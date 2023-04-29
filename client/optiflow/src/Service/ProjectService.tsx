@@ -1,4 +1,4 @@
-import {Project} from "../../models/Project";
+import {Project} from "../models/Project";
 
 
 const getAllProjects = async (): Promise<Project[]> => {
