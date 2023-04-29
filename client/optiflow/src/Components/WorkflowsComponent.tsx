@@ -18,7 +18,7 @@ interface WorkflowsComponentProps {
 }
 const WorkflowsComponent = (props: WorkflowsComponentProps) => {
 
-    const [businessAreas, setBusinessAreas] = useState(null as BusinessArea[] | null);
+    const [workflows, setWorkflows] = useState(null as BusinessArea[] | null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [opened, setOpened] = useState(false);
     const [selected, setSelectedB] = useState(false);
@@ -27,19 +27,20 @@ const WorkflowsComponent = (props: WorkflowsComponentProps) => {
 
 
     useEffect(() => {
+
             const loadingTimeout = setTimeout(() => {
                 setIsLoading(true);
             }, 1000);
             WorkflowsService.getAllWorkflows().then(data => {
                 clearTimeout(loadingTimeout);
                 setIsLoading(false);
-                setBusinessAreas(data)
+                setWorkflows(data)
             })
         }, [
         ]
     )
 
-    const setSelected = (name: string, selected: boolean) => {
+    const setSelected2 = (name: string, selected: boolean) => {
         setSelectedB(selected);
         setSelectedName(name);
         props.setUserSession({
@@ -52,12 +53,12 @@ const WorkflowsComponent = (props: WorkflowsComponentProps) => {
         <Box className="h-full">
             {
                 !isLoading ?
-                    businessAreas ?
+                    workflows ?
                         <Container fluid className="h-full" style={{maxWidth: 1400, textAlign: "center"}}>
                             <Grid className="pt-5 " style={{height: "100%"}}>
-                                {businessAreas.map(project =>
+                                {workflows.map(project =>
                                     <Grid.Col span={4} style={{height: "100%"}} key={project.name}>
-                                        <BusinessAreaCardComponent name={project.name} description={project.description} selected={project.name === selectedName || project.name === props.userSession.business_area} setSelected={setSelected}/>
+                                        <BusinessAreaCardComponent name={project.name} description={project.description} selected={project.name === selectedName || project.name === props.userSession.workflow} setSelected={setSelected2}/>
                                     </Grid.Col>)
                                 }
                             </Grid>

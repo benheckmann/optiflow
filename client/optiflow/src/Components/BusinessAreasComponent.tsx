@@ -54,11 +54,16 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                     businessAreas ?
                         <Container fluid className="h-full" style={{maxWidth: 1400, textAlign: "center"}}>
                             <Grid className="pt-5 " style={{height: "100%"}}>
-                                {businessAreas.map(project =>
-                                    <Grid.Col span={4} style={{height: "100%"}} key={project.name}>
-                                        <BusinessAreaCardComponent name={project.name} description={project.description} selected={project.name === selectedName || project.name === props.userSession.business_area} setSelected={setSelected}/>
-                                    </Grid.Col>)
-                                }
+                                {businessAreas.map((project) => (
+                                    <Grid.Col span={4} className="d-flex" style={{ height: '100%' }} key={project.name}>
+                                        <BusinessAreaCardComponent
+                                            name={project.name}
+                                            description={project.description}
+                                            selected={project.name === selectedName || project.name === props.userSession.business_area}
+                                            setSelected={setSelected}
+                                        />
+                                    </Grid.Col>
+                                ))}
                             </Grid>
                             <ModalComponent opened={opened} setOpened={setOpened}/>
 

@@ -15,6 +15,7 @@ import React, {useState} from "react";
 import UrlScrapingComponent from "./UrlScrapingComponent";
 import BusinessAreasComponent from "./BusinessAreasComponent";
 import {UserSession} from "../models/UserSession";
+import WorkflowsComponent from "./WorkflowsComponent";
 
 interface ModalComponentProps {
     opened: boolean,
@@ -109,15 +110,15 @@ const ModalComponent = (props: ModalComponentProps) => {
                         :
                         currentStep === 2 ?
                             <Box>
-                                <ScrollArea>
+                                <ScrollArea h={600}>
                                     <BusinessAreasComponent setUserSession={setUserSession} userSession={userSession}/>
                                     </ScrollArea>
                             </Box>
 
                             :
                             currentStep === 3 ?
-                                <Box> <ScrollArea>
-                                    <BusinessAreasComponent setUserSession={setUserSession} userSession={userSession}/>
+                                <Box> <ScrollArea h={600}>
+                                    <WorkflowsComponent setUserSession={setUserSession} userSession={userSession}/>
                                 </ScrollArea></Box>
                                 :
                                 currentStep === 4 ?
@@ -130,20 +131,20 @@ const ModalComponent = (props: ModalComponentProps) => {
 
 
 
-                <Grid >
+                <Grid className="bg-amber-300" style={{backgroundColor: "white"}}>
                     <Grid.Col span={8} style={{marginTop: 12}}>
                         <Container>
                             <Progress
                                 size="xl"
                                 sections={[
-                                    {value: currentStep*20 , color: '#25453F'}]}
+                                    {value: currentStep*12.5 , color: '#25453F'}]}
                             />
                         </Container>
 
                     </Grid.Col>
                     <Grid.Col span={4}>
                         <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => setCurrentStep(currentStep-1)}>Previous</Button>
-                        {currentStep === 5 ? <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => {}}>Finish</Button> : <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => setCurrentStep(currentStep+1)}>Next</Button>}
+                        {currentStep === 8 ? <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => {}}>Finish</Button> : <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => setCurrentStep(currentStep+1)}>Next</Button>}
                     </Grid.Col>
                 </Grid>
             </Box>
