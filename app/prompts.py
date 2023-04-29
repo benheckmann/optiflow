@@ -1,17 +1,21 @@
 # general message schema: system message, instruction, example input, example output, actual input
 
-SYSTEM_MESSAGE = "You are Consult-GPT, an AI Language Model that acts as a consultant for companies aiming to integrate AI into their business."  # not that important; system messages tend to be ignored
+SYSTEM_MESSAGE = "You are an consultant for companies aiming to integrate AI into their business."  # not that important; system messages tend to be ignored
 
-BUSINESS_AREA_TO_PROCESSES_INSTRUCTION = """"You will receive a title and the description of a business area. With the given information, try to come up with the key processes of this business area (at most five) and return them in the following format:
-
-[
-    {
-        "title": <business_process_title>,
-        "description": <description_of_business_process>
-    }
-]"""
+BUSINESS_AREA_TO_PROCESSES_INSTRUCTION = """"
+You will receive a company with their business model as well as a title and the description of a business area of the company. 
+Your goal is to find the key processes the company runs through in their business (maximum of five processes as an array). 
+The processes should have the ability to be optimized with artificial intelligence.
+Important: you are not allowed to return anything except for the json format as an array: 
+{
+    "process_title": <business_process_title>,
+    "process_description": <description_of_business_process>,
+    "ai_optimization_potential" : <description of the optimization potential with artificial intelligence> 
+}
+"""
 
 BUSINESS_AREA_TO_PROCESSES_EXAMPLE_INPUT = """{
+    "company_name": "mymuesli AG"
     "title": "Marketing",
     "description": "This includes all activities related to promoting and selling the company's products or services."
 }"""
