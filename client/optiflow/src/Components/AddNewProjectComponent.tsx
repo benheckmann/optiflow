@@ -14,7 +14,7 @@ const AddNewProjectComponent = () => {
                 Add Project
             </Text>
             <Container className="pt-3 pl-10">
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-square-plus" width="60"
+                {/* <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-square-plus" width="60"
                      height="60" viewBox="0 0 40 40" stroke-width="2" stroke="currentColor" fill="none"
                      stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -22,6 +22,7 @@ const AddNewProjectComponent = () => {
                     <path d="M9 12l6 0"></path>
                     <path d="M12 9l0 6"></path>
                 </svg>
+                    */}
 
             </Container>
 

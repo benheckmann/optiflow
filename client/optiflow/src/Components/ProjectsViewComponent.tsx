@@ -36,7 +36,7 @@ const ProjectsViewComponent = () => {
                     <Container fluid className="h-full" style={{maxWidth: 1400}}>
                         <Grid className="pt-5">
                             {projects.map(project =>
-                                <Grid.Col span={3}>
+                                <Grid.Col span={3} key={project.name}>
                                     <ProjectComponent name={project.name} description={project.description}/>
                                 </Grid.Col>)
                             }
