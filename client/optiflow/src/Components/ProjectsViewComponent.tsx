@@ -6,6 +6,7 @@ import {Project} from "../models/Project";
 import ProjectService from "../Service/ProjectService";
 import {useDisclosure} from "@mantine/hooks";
 import ModalComponent from "./ModalComponent";
+import UrlScrapingComponent from "./UrlScrapingComponent";
 
 const ProjectsViewComponent = () => {
 
@@ -43,11 +44,11 @@ const ProjectsViewComponent = () => {
                                 <Box onClick={() => setOpened(true)}>
                                     <AddNewProjectComponent />
                                 </Box>
-
                             </Grid.Col>
 
                         </Grid>
                        <ModalComponent opened={opened} setOpened={setOpened}/>
+
 
                     </Container>
                         : <></>

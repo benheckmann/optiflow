@@ -1,13 +1,18 @@
 import "src/lib/tailwind.css";
 import type { AppProps } from "next/app";
-import { MantineProvider } from "@mantine/core";
+import {createEmotionCache, MantineProvider} from "@mantine/core";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const myCache = createEmotionCache({
+    key: 'mantine',
+    prepend: false
+  });
+
   return (
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
-      emotionOptions={{ key: "mantine", prepend: false }}
+      emotionCache={myCache}
     >
       <Component {...pageProps} />
     </MantineProvider>
