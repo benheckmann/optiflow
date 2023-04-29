@@ -33,7 +33,7 @@ class BusinessArea(TypedDict):
     processes: List[Process]
 
 
-class UserSession(TypedDict):
+class Project(TypedDict):
     company_name: str
     url: str
     location: str
@@ -42,3 +42,6 @@ class UserSession(TypedDict):
     products_and_services: str
     scraped_pages: List[str]
     business_areas: List[BusinessArea]
+
+
+UserSession = List[Project]

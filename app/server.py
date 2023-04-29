@@ -9,16 +9,16 @@ from flask import Flask, session, Blueprint, request
 
 from flask_cors import CORS
 
-from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
-from app.crawler import get_company_info
-from app.examples_session import EXAMPLE_SESSION
+from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from crawler import get_company_info
+from examples_session import EXAMPLE_SESSION
 from database_utils import Database
-from app.gpt import ask_gpt
-from app.promts.businessfunc2processes import *
-from app.promts.crawler import *
-from app.promts.general import *
-from app.utils import get_business_areas
-from app.promts.info2businessfunc import *  # NOQA
+from gpt import ask_gpt
+from promts.general import SYSTEM_MESSAGE
+from utils import get_business_areas
+from promts.businessfunc2processes import *  # NOQA
+from promts.info2businessfunc import *  # NOQA
+from promts.processes2questions import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
@@ -51,8 +51,6 @@ def example() -> str:
         ],
     )
     llm_answer = response.choices[0].message.content
-    business_area_update = {"processes": json.loads(llm_answer)}
-    get_business_areas(session, input["title"]).update(business_area_update)
     return llm_answer
 
 
@@ -103,8 +101,21 @@ def get_processes():
 
 @api.route("/process-questions", methods=["POST"])
 def get_process_questions() -> ProcessQuestion:
-    # note: subsequent questions will be based on answers; tbd how this interaction is represented here
-    pass
+    """
+    input: { "project_index": <i>, "process_name": <name>, "process_description": <desc> }
+    """
+    input = request.json
+    input["company_name"] = session.get("session_data", {}).get("company_name", "unknown")
+    input["company_description"] = session.get("session_data", {})[input.get("project_index", 0)]
+    messages = [
+        {"role": "system", "content": SYSTEM_MESSAGE},
+        {"role": "user", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_INSTRUCTION},
+        {"role": "user", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_INPUT},
+        {"role": "assistant", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT},
+        {"role": "user", "content": str(input)}]
+    llm_answer, tokens_spent = ask_gpt(messages)
+    app.logger.info('tokens spend: %s', tokens_spent)
+    return llm_answer
 
 
 @api.route("/recommendations", methods=["POST"])
