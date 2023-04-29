@@ -16,6 +16,7 @@ import UrlScrapingComponent from "./UrlScrapingComponent";
 import BusinessAreasComponent from "./BusinessAreasComponent";
 import {UserSession} from "../models/UserSession";
 import WorkflowsComponent from "./WorkflowsComponent";
+import QuestionComponent from "./QuestionComponent";
 
 interface ModalComponentProps {
     opened: boolean,
@@ -122,8 +123,16 @@ const ModalComponent = (props: ModalComponentProps) => {
                                 </ScrollArea></Box>
                                 :
                                 currentStep === 4 ?
-                                    <Box></Box>
-                                    : <Box></Box>
+                                   <QuestionComponent question={""} userSession={userSession} setUserSession={setUserSession}/>
+                                    :  currentStep === 5 ?
+                                        <QuestionComponent question={""} userSession={userSession} setUserSession={setUserSession}/>
+                                        : currentStep === 6 ?
+                                            <QuestionComponent question={""} userSession={userSession} setUserSession={setUserSession}/>
+                                            : currentStep === 7 ?
+                                                <QuestionComponent question={""} userSession={userSession} setUserSession={setUserSession}/>
+                                                : <QuestionComponent question={""} userSession={userSession} setUserSession={setUserSession}/>
+
+
                     }
                 </Box>
 
