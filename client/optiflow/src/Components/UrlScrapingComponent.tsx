@@ -4,13 +4,26 @@ import {UserSession} from "../models/UserSession";
 
 interface UrlScrapingComponentProps {
     userSession: UserSession,
-    setUserSession: (userSession: UserSession) => void;
+    setUserSession: React.Dispatch<React.SetStateAction<UserSession>>;
 }
 
 const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
+
     const [projectName, setProjectName] = useState("");
     const [companyName, setCompanyName] = useState("");
     const [url, setURL] = useState("")
+
+    const update = () => {
+        props.setUserSession((userSession: UserSession) => {
+            return {
+                ...userSession,
+                projectName,
+                companyName,
+                name
+            } as UserSession;
+        })
+    }
+
     return (
         <Box style={{
             display: "flex",
@@ -56,14 +69,6 @@ const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
                 />
                 <Space h={30}/>
             </Box>
-            <Button className="pt-10" style={{background: "#25453F"}} onClick={() => props.setUserSession({
-                ...props.userSession,
-                projectName: projectName,
-                companyName: companyName,
-                url: url
-            })}>
-                Start scraping
-            </Button>
         </Box>
 
     )

@@ -12,40 +12,45 @@ import {UserSession} from "../models/UserSession";
 
 
 interface BusinessAreasComponentProps {
-    userSession: UserSession,
+    userSession: UserSession;
     setUserSession: (userSession: UserSession) => void;
+    isWorkflow: boolean;
 }
+
 const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
 
-    const [businessAreas, setBusinessAreas] = useState(null as BusinessArea[] | null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [opened, setOpened] = useState(false);
-    const [selected, setSelectedB] = useState(false);
-    const [selectedName, setSelectedName] = useState(null as string | null);
-
+    const [selectedIndex, setSelectedIndex] = useState(null as number | null);
 
 
     useEffect(() => {
             const loadingTimeout = setTimeout(() => {
                 setIsLoading(true);
             }, 1000);
-            BusinessAreaService.getAllBusinessAreas().then(data => {
+            return () => {
                 clearTimeout(loadingTimeout);
-                setIsLoading(false);
-                setBusinessAreas(data)
-            })
-        }, [
-        ]
+            }
+        }, [isLoading]
     )
 
-    const setSelected = (name: string, selected: boolean) => {
-        setSelectedB(selected);
-        setSelectedName(name);
-        props.setUserSession({
-            ...props.userSession,
-            business_area: name
-        })
+    const setSelected = (index: number, isSelected: boolean) => {
+        setSelectedIndex(index);
+        if (props.isWorkflow) {
+            props.setUserSession({
+                ...props.userSession,
+                selected_workflow: index
+            });
+        } else {
+            props.setUserSession({
+                ...props.userSession,
+                selected_business_area: index
+            });
+        }
     }
+
+    const businessAreas = props.isWorkflow ? props.userSession.workflows : props.userSession.business_areas;
+    const selected = props.isWorkflow ? props.userSession.selected_workflow : props.userSession.selected_business_area;
 
     return (
         <Box className="h-full">
@@ -54,12 +59,13 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                     businessAreas ?
                         <Container fluid className="h-full" style={{maxWidth: 1400, textAlign: "center"}}>
                             <Grid className="pt-5 " style={{height: "100%"}}>
-                                {businessAreas.map((project) => (
-                                    <Grid.Col span={4} className="d-flex" style={{ height: '100%' }} key={project.name}>
+                                {businessAreas.map((businessArea, index) => (
+                                    <Grid.Col span={4} className="d-flex" style={{height: '100%'}}
+                                              key={businessArea.name}>
                                         <BusinessAreaCardComponent
-                                            name={project.name}
-                                            description={project.description}
-                                            selected={project.name === selectedName || project.name === props.userSession.business_area}
+                                            index={index}
+                                            businessArea={businessArea}
+                                            selected={index === selectedIndex || index === selected}
                                             setSelected={setSelected}
                                         />
                                     </Grid.Col>
@@ -71,9 +77,14 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                         </Container>
                         : <></>
                     :
-                    <Container className="text-white" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <Loader color="white" />
+                    <Container className="text-white" style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%"
+                    }}>
+                        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Loader color="white"/>
                             <Text className="pt-5">Loading...</Text>
                         </div>
                     </Container>

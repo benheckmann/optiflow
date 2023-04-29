@@ -2,7 +2,15 @@ import {Project} from "../models/Project";
 import {BusinessArea} from "../models/BusinessArea";
 
 
-const getAllBusinessAreas = async (): Promise<BusinessArea[]> => {
+const getAllBusinessAreas = async (url: string): Promise<BusinessArea[]> => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+    };
+
+    const result = await fetch("/api/business-areas", requestOptions);
+    return await result.json();
 
     return (
         [

@@ -1,14 +1,15 @@
 import {Box, Card, Image, ScrollArea, Text} from "@mantine/core";
 import {useState} from "react";
+import {BusinessArea} from "../models/BusinessArea";
 
 
 interface BusinessAreaCardComponentProps {
-    name: string,
-    description: string,
+    index: number,
+    businessArea: BusinessArea,
     selected: boolean,
-    setSelected: (name: string, selected: boolean) => void,
-
+    setSelected: (index: number, selected: boolean) => void,
 }
+
 const BusinessAreaCardComponent = (props: BusinessAreaCardComponentProps) => {
 
     return (
@@ -19,15 +20,15 @@ const BusinessAreaCardComponent = (props: BusinessAreaCardComponentProps) => {
                 style={{userSelect: 'none', flexGrow: 1, border: props.selected ? "1px solid #25453F" : ""}}
                 className="flex flex-col justify-center items-center"
                 onClick={() => {
-                    props.setSelected(props.name, !props.selected)
+                    props.setSelected(props.index, !props.selected)
                 }}
             >
                 <Text weight={700} size="lg" mt="md" className="text-center">
-                    {props.name}
+                    {props.businessArea.name}
                 </Text>
                 <ScrollArea h={250}>
                     <Text mt="xs" color="dimmed" size="sm" className="text-center pt-3">
-                        {props.description}
+                        {props.businessArea.description}
                     </Text>
                 </ScrollArea>
 
