@@ -13,6 +13,7 @@ from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
 from prompts import *  # NOQA
 
 app = Flask(__name__)
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
 api = Blueprint("api", __name__, url_prefix="/api")
 
@@ -25,7 +26,12 @@ def before_request():
         session["session_id"] = str(uuid.uuid4())
 
 
-@api.route("/example", methods=["POST"])
+@api.route("/hello-world", methods=["GET"])
+def hello_world() -> str:
+    return "Hello, world!"
+
+
+@api.route("/example", methods=["GET"])
 def example() -> str:
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -34,8 +40,9 @@ def example() -> str:
             {"role": "user", "content": "What is the capital of france?"},
         ],
     )
-    llm_result = json.loads(response.choices[0].message.content)
-    return llm_result
+    llm_answer = response.choices[0].message.content
+    session.setdefault("api_results", {})["capital_of_france"] = llm_answer
+    return llm_answer
 
 
 @api.route("/business-areas", methods=["POST"])
@@ -45,7 +52,13 @@ def get_business_areas() -> BusinessArea:
 
 @api.route("/processes", methods=["POST"])
 def get_processes() -> Process:
-    pass
+    mock_respones = {
+        "title": "Buy Stairs",
+        "description": "Buy Stairs that will be installed later",
+        "process_questions": [],
+        "recommendations": [],
+    }
+    return mock_respones
 
 
 @api.route("/process-questions", methods=["POST"])
@@ -62,4 +75,5 @@ def get_recommendations() -> List[Recommendation]:
 if __name__ == "__main__":
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY")
+    app.register_blueprint(api)
     app.run(debug=True)
