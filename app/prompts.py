@@ -23,10 +23,10 @@ BUSINESS_AREA_TO_PROCESSES_EXAMPLE_INPUT = """{
 BUSINESS_AREA_TO_PROCESSES_EXAMPLE_OUTPUT = """[
     {
         "title": "Lead Generation",
-        "description": "This process involves identifying and attracting potential customers for the company's products or services.",
+        "description": "This process involves identifying and attracting potential customers for the company's products or services."
     },
     {
         "title": "Brand Awareness",
-        "description": "This process involves increasing the visibility and recognition of the company's brand.",
-    },
+        "description": "This process involves increasing the visibility and recognition of the company's brand."
+    }
 ]"""
