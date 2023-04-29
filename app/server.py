@@ -9,14 +9,16 @@ from flask import Flask, session, Blueprint, request
 
 from flask_cors import CORS
 
-from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
-from examples_session import EXAMPLE_SESSION
+from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from app.crawler import get_company_info
+from app.examples_session import EXAMPLE_SESSION
 from database_utils import Database
-from gpt import ask_gpt
-from promts.general import SYSTEM_MESSAGE
-from utils import get_business_areas
-from promts.businessfunc2processes import *  # NOQA
-from promts.info2businessfunc import *  # NOQA
+from app.gpt import ask_gpt
+from app.promts.businessfunc2processes import *
+from app.promts.crawler import *
+from app.promts.general import *
+from app.utils import get_business_areas
+from app.promts.info2businessfunc import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
@@ -24,17 +26,14 @@ CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev f
 api = Blueprint("api", __name__, url_prefix="/api")
 database = Database(app.logger)
 
+MOCK_ACTIVATED = True
+
 
 @app.before_request
 def before_request():
     if "session_id" not in session:
         session["session_id"] = str(uuid.uuid4())
         session.setdefault("session_data", {})
-
-
-@api.route("/hello-world", methods=["GET"])
-def hello_world() -> str:
-    return "Hello, world!"
 
 
 @api.route("/example", methods=["POST"])
@@ -58,34 +57,48 @@ def example() -> str:
 
 
 @api.route("/business-areas", methods=["POST"])
-def url_to_business_areas() -> BusinessArea:
-    # scrape (Florian)
-    mock_scraped_pages = EXAMPLE_SESSION["scraped_pages"]
-    # extract information / structure (Max)
-    input = request.json
-    messages = [
+def url_to_business_areas():
+    if MOCK_ACTIVATED:
+        return INFORMATION_TO_BUSINESS_AREA_MOCK
+    else:
+        company_url = request.json.get('url')  # @TODO requires a json object containig the company url
+        company_information = get_company_info(company_url)  # @TODO multithread to make it faster
+        messages = [
             {"role": "system", "content": SYSTEM_MESSAGE},
             {"role": "user", "content": INFORMATION_TO_BUSINESS_AREA_INSTRUCTION_SHORTED},
             {"role": "user", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_INPUT},
             {"role": "assistant", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_OUTPUT},
-            {"role": "user", "content": str(input)}]
+            {"role": "user", "content": str(company_information)}
+        ]
+        llm_answer, tokens_spend = ask_gpt(messages)
+        app.logger.info('tokens spend: %s', tokens_spend)
 
-    llm_answer, tokens_spend = ask_gpt(messages)
-    app.logger.info('tokens spend: %s', tokens_spend)
-    #business_area_update = {"processes": json.loads(llm_answer)}
-    #get_business_areas(session, input["title"]).update(business_area_update)
-    return llm_answer
+        # TODO logic for updating the session
+        # business_area_update = {"processes": json.loads(llm_answer)}
+        # get_business_areas(session, input["title"]).update(business_area_update)
+        return llm_answer
 
 
 @api.route("/processes", methods=["POST"])
-def get_processes() -> Process:
-    mock_respones = {
-        "title": "Buy Stairs",
-        "description": "Buy Stairs that will be installed later",
-        "process_questions": [],
-        "recommendations": [],
-    }
-    return mock_respones
+def get_processes():
+    if MOCK_ACTIVATED:
+        return BUSINESS_AREA_TO_PROCESSES_MOCK
+    else:
+        business_functions = request.json
+        chosen_business_function = business_functions[1]
+        # TODO import business functions as basis from session
+
+        messages = [
+            {"role": "system", "content": SYSTEM_MESSAGE},
+            {"role": "user", "content": BUSINESS_AREA_TO_PROCESSES_INSTRUCTION},
+            # TODO add company description
+            {"role": "user", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_INPUT},
+            {"role": "assistant", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_OUTPUT},
+            {"role": "user", "content": str(chosen_business_function)}
+        ]
+        llm_answer, tokens_spend = ask_gpt(messages)
+        app.logger.info('tokens spend: %s', tokens_spend)
+        return llm_answer
 
 
 @api.route("/process-questions", methods=["POST"])
