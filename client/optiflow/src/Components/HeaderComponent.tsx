@@ -1,7 +1,8 @@
-import {Box, Group, Header, Text} from "@mantine/core";
+import {Box, Container, Group, Header, Text} from "@mantine/core";
 
 const HeaderComponent = () => {
-  return (
+
+    return (
       <Header height={100} className="align-bottom">
           <Group className="pl-5 h-full" px={20}>
               <Box>
@@ -10,8 +11,14 @@ const HeaderComponent = () => {
                   </Text>
               </Box>
               <Box>
-                  <Text weight={700} className="px-5 pt-2" style={{fontSize: 20}}>
+
+                  <Text  weight={700} className="px-5 pt-2" style={{fontSize: 20}}>
                       Projects
+                      <Container style={{borderTop: "2px solid #31727A",maxWidth:100}}>
+
+                      </Container>
+
+
                   </Text>
               </Box>
               <Text weight={700} className="px-5 pt-2" style={{fontSize: 20}}>
@@ -19,7 +26,7 @@ const HeaderComponent = () => {
               </Text>
           </Group>
       </Header>
-  )
+    )
 }
 
 export default HeaderComponent;

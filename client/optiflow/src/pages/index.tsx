@@ -8,7 +8,7 @@ const Home: NextPage = () => {
     return (
         <Box className="h-screen w-screen grad-bg">
             <Box className="bg-white" style={{height: 100}}>
-                <HeaderComponent></HeaderComponent>
+                <HeaderComponent/>
             </Box>
             <ProjectsViewComponent/>
         </Box>

@@ -8,7 +8,8 @@ interface UrlScrapingComponentProps {
 }
 
 const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
-    const [name, setName] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [companyName, setCompanyName] = useState("");
     const [url, setURL] = useState("")
     return (
         <Box style={{
@@ -24,14 +25,25 @@ const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
                 <TextInput
                     placeholder="Project Name"
                     label="Project Name"
-                    defaultValue={props.userSession.name}
+                    defaultValue={props.userSession.projectName}
                     variant="filled"
                     size="md"
                     withAsterisk
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setProjectName(e.target.value)}
                     style={{width:"100%"}}
                 />
-                <Space h={10}/>
+                <Space h={15}/>
+                <TextInput
+                    placeholder="Company Name"
+                    label="Company Name"
+                    defaultValue={props.userSession.projectName}
+                    variant="filled"
+                    size="md"
+                    withAsterisk
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    style={{width:"100%"}}
+                />
+                <Space h={15}/>
                 <TextInput
                     placeholder="www.example.com"
                     label="URL"
@@ -46,7 +58,8 @@ const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
             </Box>
             <Button className="pt-10" style={{background: "#25453F"}} onClick={() => props.setUserSession({
                 ...props.userSession,
-                name: name,
+                projectName: projectName,
+                companyName: companyName,
                 url: url
             })}>
                 Start scraping

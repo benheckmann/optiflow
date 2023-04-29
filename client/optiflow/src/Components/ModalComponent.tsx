@@ -36,8 +36,13 @@ const emptyUserSession = {
     "response 5": "",
     "business_area": "",
     "workflow": "",
-    "name":"",
-    "url":""}
+    "projectName":"",
+    "companyName":"",
+        "url":"",
+    "summary":"",
+    "description":"",
+    "industry":"industry",
+    "companyProfile":"companyProfile"}
 
 const ModalComponent = (props: ModalComponentProps) => {
     const theme = useMantineTheme();
@@ -95,7 +100,7 @@ const ModalComponent = (props: ModalComponentProps) => {
                 props.setOpened(false)}}
             title="New Project"
             overlayProps={{
-                color: theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.colors.gray[2],
+                color: theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.colors.dark[9],
                 opacity: 0.55,
                 blur: 3,
             }}

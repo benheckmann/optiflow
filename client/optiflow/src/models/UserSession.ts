@@ -1,5 +1,9 @@
 export interface UserSession {
-    "name": string,
+    "projectName": string,
+    "companyName": string,
+    "description": string,
+    "companyProfile":string,
+    "industry": string,
     "url": string,
     "business_area": string,
     "workflow": string,
@@ -12,5 +16,6 @@ export interface UserSession {
     "question 4": string,
     "response 4": string,
     "question 5": string,
-    "response 5": string
+    "response 5": string,
+    "summary": string
 }
