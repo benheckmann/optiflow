@@ -5,47 +5,66 @@ from typing import List
 
 import openai
 from dotenv import load_dotenv
-from flask import Flask, session, Blueprint
+from flask import Flask, session, Blueprint, request
 
 from flask_cors import CORS
 
 from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from app.examples_session import EXAMPLE_SESSION
 from prompts import *  # NOQA
 
 app = Flask(__name__)
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
 api = Blueprint("api", __name__, url_prefix="/api")
 
 
 @app.before_request
 def before_request():
-    # check if the user has a session ID
     if "session_id" not in session:
-        # if the user doesn't have a session ID, generate a new one
         session["session_id"] = str(uuid.uuid4())
+        session.setdefault("session_data", {})
+
+
+@api.route("/hello-world", methods=["GET"])
+def hello_world() -> str:
+    return "Hello, world!"
 
 
 @api.route("/example", methods=["POST"])
 def example() -> str:
+    input = request.json
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are ChatGPT, a helpful AI assistant."},
-            {"role": "user", "content": "What is the capital of france?"},
+            {"role": "system", "content": SYSTEM_MESSAGE},
+            {"role": "user", "content": BUSINESS_AREA_TO_PROCESSES_INSTRUCTION},
+            {"role": "user", "content": BUSINESS_AREA_TO_PROCESSES_EXAMPLE_INPUT},
+            {"role": "assistant", "content": BUSINESS_AREA_TO_PROCESSES_EXAMPLE_OUTPUT},
+            {"role": "user", "content": str(input)},
         ],
     )
-    llm_result = json.loads(response.choices[0].message.content)
-    return llm_result
+    llm_answer = response.choices[0].message.content
+    return llm_answer
 
 
 @api.route("/business-areas", methods=["POST"])
 def get_business_areas() -> BusinessArea:
+    # scrape (Florian)
+    mock_scraped_pages = EXAMPLE_SESSION["scraped_pages"]
+    # extract information / structure (Max)
     pass
 
 
 @api.route("/processes", methods=["POST"])
 def get_processes() -> Process:
-    pass
+    mock_respones = {
+        "title": "Buy Stairs",
+        "description": "Buy Stairs that will be installed later",
+        "process_questions": [],
+        "recommendations": [],
+    }
+    return mock_respones
 
 
 @api.route("/process-questions", methods=["POST"])
@@ -62,4 +81,5 @@ def get_recommendations() -> List[Recommendation]:
 if __name__ == "__main__":
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY")
+    app.register_blueprint(api)
     app.run(debug=True)
