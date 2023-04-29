@@ -9,9 +9,9 @@ from flask import Flask, session, Blueprint, request
 
 from flask_cors import CORS
 
-from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
-from app.examples_session import EXAMPLE_SESSION
-from app.utils import get_business_areas
+from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from examples_session import EXAMPLE_SESSION
+from utils import get_business_areas
 from prompts import *  # NOQA
 
 app = Flask(__name__)
