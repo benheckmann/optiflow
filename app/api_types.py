@@ -28,4 +28,7 @@ class BusinessArea(TypedDict):
 
 
 class UserSession(TypedDict):
+    name: str
+    url: str
+    scraped_pages: List[str]
     business_areas: List[BusinessArea]

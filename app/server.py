@@ -47,6 +47,8 @@ def example() -> str:
 
 @api.route("/business-areas", methods=["POST"])
 def get_business_areas() -> BusinessArea:
+    # scrape (Florian)
+    # extract information / structure (Max)
     pass
 
 
