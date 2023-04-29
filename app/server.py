@@ -11,8 +11,10 @@ from flask_cors import CORS
 
 from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
 from app.examples_session import EXAMPLE_SESSION
+from app.gpt import ask_gpt
+from app.promts.general import SYSTEM_MESSAGE
 from app.utils import get_business_areas
-from prompts import *  # NOQA
+from app.promts.info2businessfunc import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
@@ -57,7 +59,19 @@ def url_to_business_areas() -> BusinessArea:
     # scrape (Florian)
     mock_scraped_pages = EXAMPLE_SESSION["scraped_pages"]
     # extract information / structure (Max)
-    pass
+    input = request.json
+    messages = [
+            {"role": "system", "content": SYSTEM_MESSAGE},
+            {"role": "user", "content": INFORMATION_TO_BUSINESS_AREA_INSTRUCTION_SHORTED},
+            {"role": "user", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_INPUT},
+            {"role": "assistant", "content": INFORMATION_TO_BUSINESS_AREA_EXAMPLE_OUTPUT},
+            {"role": "user", "content": str(input)}]
+
+    llm_answer, tokens_spend = ask_gpt(messages)
+    app.logger.info('tokens spend: %s', tokens_spend)
+    #business_area_update = {"processes": json.loads(llm_answer)}
+    #get_business_areas(session, input["title"]).update(business_area_update)
+    return llm_answer
 
 
 @api.route("/processes", methods=["POST"])

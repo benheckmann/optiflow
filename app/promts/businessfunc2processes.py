@@ -1,7 +1,3 @@
-# general message schema: system message, instruction, example input, example output, actual input
-
-SYSTEM_MESSAGE = "You are an consultant for companies aiming to integrate AI into their business."  # not that important; system messages tend to be ignored
-
 BUSINESS_AREA_TO_PROCESSES_INSTRUCTION = """"
 You will receive a company with their business model as well as a title and the description of a business area of the company. 
 Your goal is to find the key processes the company runs through in their business (maximum of five processes as an array). 
@@ -15,7 +11,7 @@ Important: you are not allowed to return anything except for the json format as 
 """
 
 BUSINESS_AREA_TO_PROCESSES_EXAMPLE_INPUT = """{
-    "company_name": "mymuesli AG"
+    "company_name": "firstkola AG"
     "title": "Marketing",
     "description": "This includes all activities related to promoting and selling the company's products or services."
 }"""
