@@ -11,6 +11,7 @@ from flask_cors import CORS
 
 from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
 from app.examples_session import EXAMPLE_SESSION
+from app.utils import get_business_areas
 from prompts import *  # NOQA
 
 app = Flask(__name__)
@@ -36,6 +37,7 @@ def example() -> str:
     input = request.json
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
+        temperature=0,
         messages=[
             {"role": "system", "content": SYSTEM_MESSAGE},
             {"role": "user", "content": BUSINESS_AREA_TO_PROCESSES_INSTRUCTION},
@@ -45,11 +47,13 @@ def example() -> str:
         ],
     )
     llm_answer = response.choices[0].message.content
+    business_area_update = {"processes": json.loads(llm_answer)}
+    get_business_areas(session, input["title"]).update(business_area_update)
     return llm_answer
 
 
 @api.route("/business-areas", methods=["POST"])
-def get_business_areas() -> BusinessArea:
+def url_to_business_areas() -> BusinessArea:
     # scrape (Florian)
     mock_scraped_pages = EXAMPLE_SESSION["scraped_pages"]
     # extract information / structure (Max)
