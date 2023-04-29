@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "4.2.8",
-    "@mantine/hooks": "4.2.8",
-    "@mantine/next": "4.2.8",
-    "next": "12.1.7-canary.33",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "@mantine/core": "^6.0.6",
+    "@mantine/hooks": "^6.0.6",
+    "@mantine/next": "^6.0.6",
+    "next": "latest",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-error-boundary": "3.1.4"
   },
   "devDependencies": {
