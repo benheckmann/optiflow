@@ -9,18 +9,20 @@ from flask import Flask, session, Blueprint, request
 
 from flask_cors import CORS
 
-from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
-from app.examples_session import EXAMPLE_SESSION
-from app.gpt import ask_gpt
-from app.promts.businessfunc2processes import *
-from app.promts.general import SYSTEM_MESSAGE
-from app.utils import get_business_areas
-from app.promts.info2businessfunc import *  # NOQA
+from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from examples_session import EXAMPLE_SESSION
+from database_utils import Database
+from gpt import ask_gpt
+from promts.general import SYSTEM_MESSAGE
+from utils import get_business_areas
+from promts.businessfunc2processes import *  # NOQA
+from promts.info2businessfunc import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
 api = Blueprint("api", __name__, url_prefix="/api")
+database = Database(app.logger)
 
 
 @app.before_request
