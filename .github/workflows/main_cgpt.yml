@@ -16,10 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Python 3.10
+      - name: Setup Python 3.X
         uses: actions/setup-python@v1
         with:
-          python-version: 3.10
+          python-version: 3.X
+
+      - name: Change to Python app directory
+        run: |
+          cd app
 
       - name: Install python dependencies
         run: |
@@ -33,10 +37,11 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
+          cd ../client/optiflow
           yarn install
-          yarn run build --if-present
-          yarn run test --if-present
-          working-directory: /client/optiflow
+          yarn run build
+          yarn run test
+        working-directory: client/optiflow
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
