@@ -1,0 +1,1 @@
+export const TABLE_ACCOUNT_INFORMATION = 'account_information';

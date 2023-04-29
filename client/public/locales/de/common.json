@@ -1,0 +1,171 @@
+{
+  "appName": "Meddy",
+  "madeBy": "",
+  "domain": "www.meddy.me",
+  "sidebar": {
+    "organisationName": "Praxisname",
+    "changeOrganisationName": "Praxisnamen ändern",
+    "manageQueues": "Warteschlangen verwalten",
+    "changePassword": "Passwort ändern"
+  },
+  "customer": {
+    "customerName": "Patienten Name:",
+    "editTitle": "Bearbeiten",
+    "name": "Name",
+    "appointmentDuration": "Termindauer",
+    "remainingTime": "Aktuelle Wartezeit",
+    "queue": "Behandelnde/r Ärztin/Arzt:",
+    "notes": "Notizen:",
+    "notesPlaceholder": "Nur interne Informationen",
+    "showQRCode": "QR Code anzeigen",
+    "approximateAppointmentDuration": "Geschätze Termindauer in Minuten:",
+    "createCostumer": "Kunde erstellen"
+  },
+  "qrCode": {
+    "scan": "Scannen Sie den QR-Code um über Ihre Wartezeit informiert zu bleiben",
+    "greeting": "Herzlichen Willkommen in der Testing Praxis, {{name}}!"
+  },
+  "queueManagement": {
+    "confirmDelete": {
+      "title": "Löschen bestätigen",
+      "text": "Soll {{name}} mit allen Kundendaten gelöscht werden? Diese Aktion kann nicht Rückgängig gemacht werden"
+    },
+    "failedDelete": {
+      "title": "Löschen fehlgeschlagen",
+      "text": "{{name}} konnte nicht gelöscht werden. Sind noch Kunden in der Warteschlange?"
+    },
+    "newQueue": "Neue Warteschlange"
+  },
+  "administration": {
+    "duration": "Termindauer: {{minutes}} Minuten",
+    "remainingTime": "Noch {{minutes}} Minuten",
+    "timeExceeded": "Termindauer überschritten",
+    "extraMinutes": "+5min"
+  },
+  "checkin": {
+    "newCustomer": "Neuer Kunde/in",
+    "checkin": "Einchecken"
+  },
+  "password_reset": {
+    "title": "Passwort zurücksetzen",
+    "password_field": {
+      "label": "Neues Passwort",
+      "placeholder": "Passwort"
+    },
+    "submit": "Abschicken"
+  },
+  "login": {
+    "title": "Anmelden",
+    "submit": "Anmelden",
+    "reset_password_text": "Passwort vergessen?",
+    "reset_password_success": "Passwort erfolgreich zurückgesetzt!"
+  },
+  "duration": "Termindauer",
+  "remainingAppointmentDuration": "Die verbleibende Termindauer beträgt",
+  "remainingWaitingTime": "Die verbleibende Wartezeit beträgt",
+  "minutesAbbreviation": "min",
+  "singleMinute": "Minute",
+  "multipleMinutes": "Minuten",
+  "call": "Aufrufen",
+  "checkout": "Abmelden",
+  "saveChanges": "Änderungen speichern",
+  "confirm": "Bestätigen",
+  "logout": "Abmelden",
+  "cancel": "Abbrechen",
+  "change": "Ändern",
+  "close": "Schließen",
+  "add": "Hinzufügen",
+  "errors": {
+    "title": "Fehler",
+    "parameterMissing": "Ein Parameter wurde nicht übergeben. Überprüfe ob du auf der richtigen Seite bist.",
+    "passwordLength": "Das Passwort muss mindestens 4 Zeichen besitzen.",
+    "loginFailed": "Anmeldung fehlgeschlagen! Bitte überprüfen E-Mail und Passwort",
+    "invalidEmail": "Keine valide E-Mail Adresse",
+    "invalidName": "Der Name muss mindestens 3 Zeichen besitzen",
+    "positiveNumber": "Bitte wähle eine positive Zahl",
+    "noElement": "Bitte wähle ein Element"
+  },
+  "checkIn": {
+    "assignedDoctor": "Behandelnde/r Ärztin/Arzt:"
+  },
+  "waitingScreen": {
+    "queue": "Warteschlange"
+  },
+  "wait": {
+    "welcomeMessage": "Herzlichen Willkommen bei {{organisation}}, {{customer}}!",
+    "expectedWaitingTime": "Ihre geschätze Wartezeit",
+    "soon": "Sie sind gleich dran.",
+    "peopleAhead": {
+      "1": "Vor Ihnen befindet sich noch eine Person",
+      "number": "Vor Ihnen befinden sich noch {{count}} Personen",
+      "more": "Vor Ihnen befinden sich noch mehr als vier Personen"
+    },
+    "informationAboutMeddy": "\"Meddy ermöglicht eine effiziente Verwaltung von Warteschlangen und schafft Transparenz über Wartezeiten.\"",
+    "contactUs": "Mehr Informationen unter www.meddy.me"
+  },
+  "indexPage": {
+    "mission": "\"Wir wollen Warteschlangen neu denken\"",
+    "useCase": "Unsere Software Meddy ermöglicht eine effiziente Verwaltung von Warteschlangen und schafft Transparenz über die Wartezeit für Ihre Kunden.",
+    "productDescription": "Meddy ist eine Wartemanagementtool, das eine effiziente Verwaltung von Warteschlangen ermöglicht. Kunden können Warteschlangen zugeordnet werden, die dann von einem oder mehreren Endgeräten dynamisch verwertbar sind. Dabei können neue Kunden mit nur vier Klicks eingecheckt werden und erhalten durch das Scannen eines QR-Codes eine transparente Übersicht über ihre verbleibende Wartezeit. Dafür muss keine zusätzliche Software vom Kunden installiert werden.",
+    "usability": "Einfache Handhabung",
+    "privacy": "Datenschutz",
+    "clientSatisfaction": "Kundenzufriedenheit",
+    "usabilityText": "Keine Installation notwendig. Leichte Bedienung, für die keine Schulung notwendig ist. Kunden einchecken mit nur vier Klicks.",
+    "privacyText": "Daten werden nicht länger als notwendig gespeichert. Keine Verarbeitung der Daten oder Verkauf. DSGVO-Konform.",
+    "clientSatisfactionText": "Transparenz der Wartezeit gegenüber Kunden steigert die Zufriedenheit zuverlässig.",
+    "checkInToggle": "1. Kunde einchecken",
+    "scanQRToggle": "2. Kunde scannt QR-Code",
+    "queueManagement": "3. Warteschlangen verwalten",
+    "applicationQuestion": "Wie wird Meddy verwendet?",
+    "aboutUsIntroduction": "Unsere Geschichte begann während unseres Studiums an der Technischen Universität München. Als vielbeschäftigte Studenten waren wir immer wieder von den langen Wartezeiten genervt, die uns in unserem hektischen Alltag aufhielten. Kurz vor einer wichtigen Analysis",
+    "contact": "Kontakt",
+    "accordion": {
+      "checkinCustomer": "Kunde einchecken",
+      "customerView": "Kundenansicht",
+      "changeOrder": "Reihenfolge/Warteschlange der Kunden verändern",
+      "editCustomer": "Kunde bearbeiten",
+      "queueManagement": "Warteschlangen verwalten"
+    },
+    "checkinSteps": ["1. Kunden Name eingeben", "2. Geschätze Termindauer anklicken (bzw. eingeben)", "3. Warteschlange auswählen", "4. Kunde erstellen"],
+    "QRCodeSteps": ["1. Kunde scannt QR-Code", "2. Wartezeit wird auf seinem Smartphone angezeigt"],
+    "userStory": {
+      "title": "Über uns",
+      "aboutUs": "Prüfung hatte Florian einen Arzttermin. Er musste fast eine Stunde warten, bevor er endlich drankam. Er wusste, dass er diese Zeit auch effizienter hätte nutzen können. In dieser Zeit machte er sich Gedanken darüber, wie man das Warten effizienter gestalten könnte. Schließlich war die Idee geboren: Ein Tool, dass das Warten angenehmer und produktiver macht. Marius hatte ähnliche Erfahrungen gemacht und war von der Idee sofort begeistert. So arbeiteten wir gemeinsam an einem Konzept und entwickelten Meddy, ein Tool, dass das Warten neugestalten sollte. Ursprünglich dachten wir, dass Meddy nur ein nettes Feature sein würde, aber die Rückmeldungen, die wir erhielten, waren viel positiver als erwartet. Wir erkannten schnell, dass unser Ziel darin bestand, das Warten neu zu gestalten und einen Mehrwert für alle Beteiligten - den Wartenden, wie Patienten und zugehörige Einrichtungen, wie Arztpraxen - zu schaffen. Heute ist Meddy zu einem unverzichtbaren Instrument für viele Ärzte geworden, die ihre Zeit effektiver nutzen möchten. Wir sind stolz darauf, dass wir dazu beitragen konnten, das Warten angenehmer und produktiver zu gestalten und freuen uns darauf, Meddy weiter zu verbessern und auszubauen.",
+      "readStory": "Lies die ganze Story",
+      "closeStory": "Schließe die Story"
+    },
+    "contactCard": {
+      "title": "Kontaktieren Sie uns",
+      "email": "E-Mail",
+      "emailAddress": "info@meddy.me",
+      "telephone": "Telefon",
+      "telephoneNumber": "+49 1573 2128812"
+    },
+    "aboutCard": {
+      "title": "Über die Gründer von Meddy",
+      "linkedIn": "LinkedIn",
+      "cards": [
+        {
+          "name": "Florian Koller",
+          "bio": "Informatik Student der Technischen Universität München und Co-Founder von Meddy",
+          "email": "florian.koller@meddy.me",
+          "image": "/images/florian.jpeg",
+          "linkedIn": "https://de.linkedin.com/in/florian-koller-837902243"
+        },
+        {
+          "name": "Marius Weigt",
+          "bio": "Wirtschaftsinformatik Student der Technischen Universität München und Co-Founder von Meddy",
+          "email": "marius.weigt@meddy.me",
+          "image": "/images/marius.jpeg",
+          "linkedIn": "https://de.linkedin.com/in/marius-weigt-919a4b213"
+        }
+      ]
+    }
+  },
+  "footer": {
+    "home": "Home",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt"
+  }
+}
