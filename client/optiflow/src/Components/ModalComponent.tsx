@@ -13,13 +13,18 @@ interface ModalComponentProps {
 }
 
 const emptyUserSession: UserSession = {
-    "name": "",
+    "projectName": "",
+    "companyName": "",
+    "description": "",
+    "companyProfile": "",
+    "industry": "",
     "url": "",
     "business_areas": [],
     "selected_business_area": 0,
     "workflows": [],
     "selected_workflow": 0,
-    "questions": []
+    "questions": [],
+    "summary": ""
 }
 
 const ModalComponent = (props: ModalComponentProps) => {
@@ -38,8 +43,9 @@ const ModalComponent = (props: ModalComponentProps) => {
                         }
                     });
                 });
+                break;
             case 2:
-                WorkflowsService.getAllWorkflows().then(data => {
+                WorkflowsService.getAllWorkflows(userSession.business_areas[userSession.selected_business_area]).then(data => {
                     setUserSession(userSession => {
                         return {
                             ...userSession,
@@ -47,6 +53,7 @@ const ModalComponent = (props: ModalComponentProps) => {
                         }
                     })
                 });
+                break;
 
         }
         setCurrentStep(currentStep + 1);
@@ -111,9 +118,15 @@ const ModalComponent = (props: ModalComponentProps) => {
                         <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
                                 onClick={() => setCurrentStep(currentStep - 1)}>Previous</Button>
                         {currentStep === 8 ?
-                            <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}} onClick={() => {
-                            }}>Finish</Button> : <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
-                                                         onClick={() => setCurrentStep(currentStep + 1)}>Next</Button>}
+                            <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
+                                    onClick={() => {
+                                    }}>
+                                Finish
+                            </Button>
+                            : <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
+                                      onClick={() => {
+                                          advanceStep();
+                                      }}>Next</Button>}
                     </Grid.Col>
                 </Grid>
             </Box>

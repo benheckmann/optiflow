@@ -1,4 +1,4 @@
 export interface BusinessArea {
-    name: string;
+    title: string;
     description: string;
 }

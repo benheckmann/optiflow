@@ -26,12 +26,15 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
 
     useEffect(() => {
             const loadingTimeout = setTimeout(() => {
-                setIsLoading(true);
+                if ((props.isWorkflow && props.userSession.workflows.length === 0)
+                    || (!props.isWorkflow && props.userSession.business_areas.length === 0)) {
+                    setIsLoading(true);
+                }
             }, 1000);
             return () => {
                 clearTimeout(loadingTimeout);
             }
-        }, [isLoading]
+        }, [props]
     )
 
     const setSelected = (index: number, isSelected: boolean) => {
@@ -61,7 +64,7 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                             <Grid className="pt-5 " style={{height: "100%"}}>
                                 {businessAreas.map((businessArea, index) => (
                                     <Grid.Col span={4} className="d-flex" style={{height: '100%'}}
-                                              key={businessArea.name}>
+                                              key={businessArea.title}>
                                         <BusinessAreaCardComponent
                                             index={index}
                                             businessArea={businessArea}

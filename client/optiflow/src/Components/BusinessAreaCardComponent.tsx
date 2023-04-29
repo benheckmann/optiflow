@@ -24,7 +24,7 @@ const BusinessAreaCardComponent = (props: BusinessAreaCardComponentProps) => {
                 }}
             >
                 <Text weight={700} size="lg" mt="md" className="text-center">
-                    {props.businessArea.name}
+                    {props.businessArea.title}
                 </Text>
                 <ScrollArea h={250}>
                     <Text mt="xs" color="dimmed" size="sm" className="text-center pt-3">
