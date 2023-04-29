@@ -101,6 +101,7 @@ const ModalComponent = (props: ModalComponentProps) => {
             </Box>
         </Modal>
     )
+
 }
 
 export default ModalComponent
