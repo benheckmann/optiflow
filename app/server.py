@@ -12,6 +12,7 @@ from flask_cors import CORS
 from app.api_types import BusinessArea, Process, ProcessQuestion, Recommendation
 from app.examples_session import EXAMPLE_SESSION
 from app.gpt import ask_gpt
+from app.promts.businessfunc2processes import *
 from app.promts.general import SYSTEM_MESSAGE
 from app.utils import get_business_areas
 from app.promts.info2businessfunc import *  # NOQA
