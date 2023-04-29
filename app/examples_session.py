@@ -1,4 +1,4 @@
-example_session = {
+EXAMPLE_SESSION = {  # TODO: example stückweise verbessern (echte ChatGPT Ergebnisse verwenden!)
     "name": "ABC Company",
     "url": "https://www.abccompany.com/",
     "scraped_pages": [
