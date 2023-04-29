@@ -1,6 +1,6 @@
 from flask.sessions import SessionMixin
 
-from app.api_types import BusinessArea
+from api_types import BusinessArea
 
 
 def get_business_areas(session: SessionMixin, title: str) -> BusinessArea:
