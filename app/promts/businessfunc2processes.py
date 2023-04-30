@@ -108,8 +108,7 @@ BUSINESS_AREA_TO_PROCESSES_MOCK_OLD = """[
     },
     {
         "title": "Influencer Marketing",
-        "description": "Partnering with influencers and brand ambassadors to promote Fritz-Kola and its values to a
-        wider audience.",
+        "description": "Partnering with influencers and brand ambassadors to promote Fritz-Kola and its values to a wider audience.",
         "ai_optimization_potential": "Using AI to identify and evaluate potential influencers and brand ambassadors based on
         their audience demographics and engagement rates, as well as to track the success of influencer campaigns in driving
         brand awareness and sales."

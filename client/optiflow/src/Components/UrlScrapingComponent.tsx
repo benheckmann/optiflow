@@ -44,7 +44,7 @@ const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
                     withAsterisk
                     onChange={(e) => {
                         setProjectName(e.target.value)
-                        update(e.target.value, projectName, url);
+                        update(e.target.value, companyName, url);
                     }}
                     style={{width: "100%"}}
                 />
@@ -52,7 +52,7 @@ const UrlScrapingComponent = (props: UrlScrapingComponentProps) => {
                 <TextInput
                     placeholder="Company Name"
                     label="Company Name"
-                    defaultValue={props.userSession.projectName}
+                    defaultValue={props.userSession.companyName}
                     variant="filled"
                     size="md"
                     withAsterisk
