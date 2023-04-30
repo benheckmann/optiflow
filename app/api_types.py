@@ -21,8 +21,8 @@ class Process(TypedDict):
     recommendations: List[Recommendation]
 
 
-class LLMProcess(
-    TypedDict):  # outputted by ChatGPT as an intermediate step before the other attributes will be determined
+class LLMProcess(TypedDict):
+    # outputted by ChatGPT as an intermediate step before the other attributes will be determined
     title: str
     description: str
 
@@ -34,11 +34,12 @@ class BusinessArea(TypedDict):
 
 
 class LLMBusinessArea(TypedDict):
+    # intermediate step outputted by ChatGPT
     title: str
     description: str
 
 
-class UserSession(TypedDict):
+class Project(TypedDict):
     company_name: str
     url: str
     location: str
@@ -47,3 +48,6 @@ class UserSession(TypedDict):
     products_and_services: str
     scraped_pages: List[str]
     business_areas: List[BusinessArea]
+
+
+UserSession = List[Project]
