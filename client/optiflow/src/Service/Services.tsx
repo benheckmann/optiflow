@@ -27,7 +27,13 @@ const getAllWorkflows = async (businessArea: BusinessArea): Promise<BusinessArea
 }
 
 const getAllProjects = async (): Promise<UserSession[]> => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+    };
 
+    const result = await fetch(HOSTNAME + "/api/get-front-end-user-session", requestOptions);
+    return await result.json();
 }
 
 const getQuestions = async (process: BusinessArea): Promise<string[]> => {
@@ -41,12 +47,15 @@ const getQuestions = async (process: BusinessArea): Promise<string[]> => {
     return await result.json();
 }
 
-const postQuestions = async (questions: {question: string, answer: string}[]): Promise<void> => {
+const postQuestions = async (questions: { question: string, answer: string }[]): Promise<void> => {
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(questions)
+    };
 
-}
-
-const getProject = async (): Promise<> => {
-
+    const result = await fetch(HOSTNAME + "/api/recommendations", requestOptions);
+    return await result.json();
 }
 
 export default {
