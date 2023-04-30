@@ -56,7 +56,7 @@ const SummaryPageComponent = (props: SummaryPageComponentProps) => {
                         <Text>{props.userSession.summary}</Text>
                     </Container>
                     <Space h={50}/>
-                    <Text>Recommended Tools:</Text>
+                    <Text>Recommended AI Solutions:</Text>
                     {props.userSession.tools.map(tool => {
                         return (
                             <>
