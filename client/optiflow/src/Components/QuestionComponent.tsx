@@ -26,7 +26,7 @@ const QuestionComponent = (props: QuestionComponentProps) => {
                 width: "100%",
                 textAlign: "center" // added property
             }}>
-                <Box style={{minWidth: 200, width: 300, textAlign: "start"}}>
+                <Box style={{minWidth: 500, width: 600, textAlign: "start"}}>
                     <Text weight={500}>
                         {props.userSession.questions[props.question].question}
                     </Text>

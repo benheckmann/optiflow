@@ -7,24 +7,29 @@ import {UserSession} from "../models/UserSession";
 import Services from "../Service/Services";
 
 const ProjectsViewComponent = () => {
-
     const [userSessions, setUserSessions] = useState(null as UserSession[] | null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [opened, setOpened] = useState(false);
 
+    const setModalOpen = (open: boolean) => {
+        if (!open) {
+            Services.getAllProjects().then(data => {
+                setUserSessions(data);
+            });
+        }
+        setOpened(open);
+    }
 
     useEffect(() => {
         const loadingTimeout = setTimeout(() => {
             setIsLoading(true);
         }, 1000);
-            Services.getAllProjects().then(data => {
-                clearTimeout(loadingTimeout);
-                setIsLoading(false);
-                setUserSessions(data)
-            })
-    }, [
-        ]
-    )
+        Services.getAllProjects().then(data => {
+            clearTimeout(loadingTimeout);
+            setIsLoading(false);
+            setUserSessions(data)
+        })
+    }, []);
 
     return (
         <Box className="h-full">
@@ -39,25 +44,28 @@ const ProjectsViewComponent = () => {
                             }
                             <Grid.Col span={3}>
                                 <Box onClick={() => setOpened(true)}>
-                                    <AddNewProjectComponent />
+                                    <AddNewProjectComponent/>
                                 </Box>
                             </Grid.Col>
 
                         </Grid>
-                       <ModalComponent opened={opened} setOpened={setOpened}/>
+                        <ModalComponent opened={opened} setOpened={setModalOpen}/>
                     </Container>
                     :
-                    <Container className="text-white" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <Loader color="white" />
+                    <Container className="text-white" style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%"
+                    }}>
+                        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Loader color="white"/>
                             <Text className="pt-5">Loading...</Text>
                         </div>
                     </Container>
-
-
             }
         </Box>
     )
-
 }
+
 export default ProjectsViewComponent;

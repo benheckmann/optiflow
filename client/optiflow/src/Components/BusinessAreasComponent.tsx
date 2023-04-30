@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Container, Grid} from "@mantine/core";
+import {Box, Card, Container, Flex, Grid, ScrollArea, Space, Text} from "@mantine/core";
 import ModalComponent from "./ModalComponent";
 import BusinessAreaCardComponent from "./BusinessAreaCardComponent";
 import {UserSession} from "../models/UserSession";
@@ -67,11 +67,31 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                                         />
                                     </Grid.Col>
                                 ))}
+                                <Grid.Col span={4} className="d-flex" style={{height: '100%'}}
+                                          key={"add"}>
+                                    <Box style={{height: 350, display: 'flex', alignSelf: 'stretch'}}>
+                                        <Card
+                                            shadow="sm"
+                                            component="b"
+                                            style={{
+                                                userSelect: 'none',
+                                                flexGrow: 1,
+                                                border: ""
+                                            }}
+                                            className="flex flex-col justify-center items-center"
+                                        >
+                                            <Space h={60}/>
+                                            <Text weight={600} size="lg" mt="md" className="text-center">
+                                                Add more
+                                            </Text>
+                                        </Card>
+                                    </Box>
+                                </Grid.Col>
                             </Grid>
                             <ModalComponent opened={opened} setOpened={setOpened}/>
                         </Container>
                         : <></>
-                    : <LoadingScreen />
+                    : <LoadingScreen/>
             }
         </Box>
     )

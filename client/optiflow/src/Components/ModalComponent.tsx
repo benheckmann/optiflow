@@ -80,7 +80,9 @@ const ModalComponent = (props: ModalComponentProps) => {
                 });
                 break;
             case 8:
-                Services.
+                Services.postQuestions(userSession.questions).then(data => {
+                    props.setOpened(false);
+                });
 
         }
         setCurrentStep(currentStep + 1);
@@ -154,12 +156,12 @@ const ModalComponent = (props: ModalComponentProps) => {
                         <Grid.Col span={4}>
                             <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
                                     onClick={() => setCurrentStep(currentStep - 1)}>Previous</Button>
-                                <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
-                                          onClick={() => {
-                                              advanceStep();
-                                          }}>
-                                    {currentStep !== 8 ? "Next" : "Finished" }
-                                </Button>
+                            <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
+                                    onClick={() => {
+                                        advanceStep();
+                                    }}>
+                                {currentStep !== 8 ? "Next" : "Finished"}
+                            </Button>
                         </Grid.Col>
                     </Grid> : <></>
                 }

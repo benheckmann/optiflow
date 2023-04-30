@@ -41,7 +41,11 @@ const getQuestions = async (process: BusinessArea): Promise<string[]> => {
     return await result.json();
 }
 
-const postQuestions = async (process: BusinessArea): Promise<void> => {
+const postQuestions = async (questions: {question: string, answer: string}[]): Promise<void> => {
+
+}
+
+const getProject = async (): Promise<> => {
 
 }
 

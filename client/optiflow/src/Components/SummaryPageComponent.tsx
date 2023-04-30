@@ -3,6 +3,7 @@ import {UserSession} from "../models/UserSession";
 
 interface SummaryPageComponentProps {
     userSession: UserSession;
+
 }
 
 const SummaryPageComponent = (props: SummaryPageComponentProps) => {
@@ -40,11 +41,11 @@ const SummaryPageComponent = (props: SummaryPageComponentProps) => {
                     </Grid>
                     <Grid style={{width: "100%"}}>
                         <Grid.Col span={6}><Text>Business Area: </Text></Grid.Col>
-                        <Grid.Col span={6}><Text weight={700}>{props.userSession.business_area}</Text></Grid.Col>
+                        <Grid.Col span={6}><Text weight={700}>{props.userSession.business_areas[props.userSession.selected_business_area].title}</Text></Grid.Col>
                     </Grid>
                     <Grid style={{width: "100%"}}>
                         <Grid.Col span={6}><Text>Process: </Text></Grid.Col>
-                        <Grid.Col span={6}><Text weight={700}>{props.userSession.workflow}</Text></Grid.Col>
+                        <Grid.Col span={6}><Text weight={700}>{props.userSession.workflows[props.userSession.selected_workflow].title}</Text></Grid.Col>
                     </Grid>
                     <Space h={20}/>
                     <Text>Detailed Project Summary</Text>
