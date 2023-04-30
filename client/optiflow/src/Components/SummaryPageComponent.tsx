@@ -65,8 +65,11 @@ const SummaryPageComponent = (props: SummaryPageComponentProps) => {
                                 <Text>Business Value: {tool.expected_business_value_evaluation}</Text>
                                 <Text>Costs and Risks: {tool.costs_and_risks}</Text>
                                 <Text>Required Data Source: {tool.required_data_sources}</Text>
-                                <Text>Recommended Tools: {tool.recommended_tools.map(t =>
-                                    <Link href={t.url}>{t.name}</Link>)}</Text>
+                                {tool.recommended_tools ?
+                                    <Text>Recommended Tools: {tool.recommended_tools.map(t =>
+                                        <Link href={t.url}>{t.name}</Link>)}</Text>
+                                    : <></>
+                                }
                                 <Space h={50}/>
                             </>
                         )
