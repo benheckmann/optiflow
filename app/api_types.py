@@ -6,12 +6,19 @@ class ProcessQuestion(TypedDict):
     answer: str
 
 
+class AITool(TypedDict):
+    name: str
+    url: str
+    description: str
+
+
 class Recommendation(TypedDict):
     problem_description: str
     ai_application_description: str
     expected_business_value_evaluation: str  # data type can be changed as per requirement
     costs_and_risks: str
     required_data_sources: str
+    recommended_tools: List[AITool]
 
 
 class Process(TypedDict):
@@ -52,13 +59,16 @@ class Project(TypedDict):
 
 UserSession = List[Project]
 
+
 class FrontEndBusinessArea(TypedDict):
     id: int
     name: str
 
+
 class FrontEndQuestion(TypedDict):
     question: str
     answer: str
+
 
 class FrontEndUserSession(TypedDict):
     projectName: str
@@ -74,4 +84,3 @@ class FrontEndUserSession(TypedDict):
     questions: List[FrontEndQuestion]
     summary: str
     tools: List[Recommendation]
-

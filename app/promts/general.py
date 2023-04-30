@@ -122,21 +122,44 @@ FRONT_END_USER_SESSION_MOCK = [{
             "ai_application_description": "Implement a chatbot that can help customers with their queries and complaints 24/7.",
             "expected_business_value_evaluation": "This will reduce the workload on customer support staff and lead to higher customer satisfaction levels, resulting in a decrease in churn rate by at least 10%.",
             "costs_and_risks": "The cost of implementing and maintaining the chatbot can be high, and there is a risk of negative customer experience if the chatbot does not function properly.",
-            "required_data_sources": "Customer service logs and FAQ documents."
+            "required_data_sources": "Customer service logs and FAQ documents.",
+            "recommended_tools": [
+            {
+                "name": "Jasper.ai",
+                "url": "https://www.insidr.ai/aff/jasper",
+                "description": "Create amazing blog posts, art & images, marketing copy, sales emails, SEO content, Facebook ads, web content, captions, video scripts, 10X faster with AI. Jasper is the AI Content Generator that helps you and your team break through creative blocks to create amazing, original content 10X faster."
+            },
+            {
+                "name": "Nando.ai",
+                "url": "https://www.insidr.ai/aff/nando",
+                "description": "Create High-Converting Copy For Your Online Business In Seconds! Explore Over 60 Powerful Tools to Craft Compelling Product Descriptions, Video Scripts, Ad Concepts, Copy, Blog Posts, Social Media Content, and So Much More."
+            },
+            {
+                "name": "SinCode",
+                "url": "https://www.insidr.ai/aff/sincode",
+                "description": "SinCode humanize your AI written content so you don\u2019t get negative ratings from Google. SinCode will help you boost your SEO and all types of written content. Create SEO optimized plagiarism-free content for your blog, articles, website, email and all types of written content 10x faster."
+            }]
         },
         {
             "problem_description": "The company's marketing campaigns are not yielding the desired results.",
             "ai_application_description": "Develop a predictive model that can identify potential customers based on their online behavior.",
             "expected_business_value_evaluation": "This will lead to more targeted marketing campaigns and a higher conversion rate, resulting in an increase in revenue by at least 15%.",
             "costs_and_risks": "The cost of developing and implementing the model can be high, and there is a risk of inaccurate predictions leading to ineffective marketing campaigns.",
-            "required_data_sources": "Online user behavior data and past marketing campaign data."
+            "required_data_sources": "Online user behavior data and past marketing campaign data.",
+            "recommended_tools": [
+            {
+                "name": "Followr.ai",
+                "url": "https://www.insidr.ai/aff/followr",
+                "description": "Content and posting on social media automatically with AI. Advanced analytics, AI-assisted content production, and automated scheduling may all be used to improve your strategy and boost engagement on your social media platforms."
+            }]
         },
         {
             "problem_description": "The company's supply chain is not optimized, leading to delays and increased costs.",
             "ai_application_description": "Develop a machine learning model that can optimize the supply chain by predicting demand and optimizing inventory levels.",
             "expected_business_value_evaluation": "This will lead to more efficient supply chain management and a decrease in costs by at least 20%.",
             "costs_and_risks": "The cost of developing and implementing the model can be high, and there is a risk of inaccurate predictions leading to supply chain disruptions.",
-            "required_data_sources": "Sales data, inventory data, and supplier data."
+            "required_data_sources": "Sales data, inventory data, and supplier data.",
+            "recommended_tools": []
         }
     ]
 }]
