@@ -18,9 +18,7 @@ class Database:
             os.getenv("COSMOS_DB_ENDPOINT"),
             {"masterKey": os.getenv("COSMOS_DB_PRIMARY_KEY")},
         )
-        self.database = self.client.get_database_client(
-            DB_NAME
-        )
+        self.database = self.client.get_database_client(DB_NAME)
 
     def query(self, query: str, container_name: str) -> List[Dict]:
         try:
@@ -37,10 +35,10 @@ class Database:
         return [item for item in items if item]
 
     def point_read(
-            self,
-            item_id: str,
-            partition_key: str,
-            container_name: str,
+        self,
+        item_id: str,
+        partition_key: str,
+        container_name: str,
     ) -> Dict:
         try:
             container = self.database.get_container_client(container_name)

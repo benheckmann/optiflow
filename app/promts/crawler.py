@@ -32,4 +32,3 @@ COMPANY_PROFILE_MOCK = """
     "company_profile": "Fritz-Kola is a German soft drink company that offers a range of unique and natural sodas, including their signature kola with high caffeine content. Their business model is based on providing a healthier alternative to traditional soft drinks, using natural ingredients and promoting sustainability. Their goal is to offer high-quality products while promoting tolerance and social responsibility. What makes Fritz-Kola unique is their commitment to creating a unique taste and experience for their customers, with a focus on high caffeine content and natural ingredients."
 }
 """
-

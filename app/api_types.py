@@ -32,6 +32,7 @@ class BusinessArea(TypedDict):
     description: str
     processes: List[Process]
 
+
 class LLMBusinessArea(TypedDict):
     # intermediate step outputted by ChatGPT
     title: str

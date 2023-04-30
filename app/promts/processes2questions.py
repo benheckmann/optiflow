@@ -15,3 +15,4 @@ PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT = """[
     "How does Fritz-Kola ensure that their commitment to fair trade and sustainability is effectively communicated in their advertising campaigns?"
 ]"""
 
+PROCESSES_TO_QUESTIONS_MOCK = PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT
