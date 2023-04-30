@@ -117,42 +117,36 @@ BUSINESS_AREA_TO_PROCESSES_MOCK_OLD = """[
 ]
 """
 
-BUSINESS_AREA_TO_PROCESSES_MOCK_NEW = """[
+BUSINESS_AREA_TO_PROCESSES_MOCK_NEW = [
     {
         "title": "Marketing Campaigns",
-        "description": "Creating and executing marketing campaigns that promote Fritz-Kola's unique selling proposition,
-        emphasizing the use of high-quality, natural ingredients and socially responsible practices, and promoting tolerance and
-        sustainability.",
+        "description": "Creating and executing marketing campaigns that promote Fritz-Kola's unique selling proposition, emphasizing the use of high-quality, natural ingredients and socially responsible practices, and promoting tolerance and sustainability.",
         "process_questions": [],
         "recommendations": []
     },
     {
         "title": "Brand Management",
-        "description": "Managing the Fritz-Kola brand image and reputation, ensuring that it aligns with the company's
-        values and unique selling proposition.",
+        "description": "Managing the Fritz-Kola brand image and reputation, ensuring that it aligns with the company's values and unique selling proposition.",
         "process_questions": [],
         "recommendations": []
     },
     {
         "title": "Market Research",
-        "description": "Conducting market research to identify customer preferences and trends, as well as to gather
-        feedback on the effectiveness of marketing campaigns and brand image.",
+        "description": "Conducting market research to identify customer preferences and trends, as well as to gather feedback on the effectiveness of marketing campaigns and brand image.",
         "process_questions": [],
         "recommendations": []
     }
     ,
     {
         "title": "Content Creation",
-        "description": "Creating engaging and informative content for marketing campaigns and brand promotion, such as
-        social media posts, blog articles, and videos.",
+        "description": "Creating engaging and informative content for marketing campaigns and brand promotion, such as social media posts, blog articles, and videos.",
         "process_questions": [],
         "recommendations": []
     },
     {
         "title": "Influencer Marketing",
-        "description": "Partnering with influencers and brand ambassadors to promote Fritz-Kola and its values to a
-        wider audience.",
+        "description": "Partnering with influencers and brand ambassadors to promote Fritz-Kola and its values to a wider audience.",
         "process_questions": [],
         "recommendations": []
     }
-]"""
+]

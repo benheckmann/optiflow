@@ -51,3 +51,26 @@ class Project(TypedDict):
 
 
 UserSession = List[Project]
+
+class FrontEndBusinessArea(TypedDict):
+    id: int
+    name: str
+
+class FrontEndQuestion(TypedDict):
+    question: str
+    answer: str
+
+class FrontEndUserSession(TypedDict):
+    projectName: str
+    companyName: str
+    description: str
+    companyProfile: str
+    industry: str
+    url: str
+    business_areas: List[FrontEndBusinessArea]
+    selected_business_area: int
+    workflows: List[FrontEndBusinessArea]
+    selected_workflow: int
+    questions: List[FrontEndQuestion]
+    summary: str
+

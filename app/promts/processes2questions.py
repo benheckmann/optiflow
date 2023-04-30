@@ -1,3 +1,5 @@
+import json
+
 PROCESSES_TO_QUESTIONS_INSTRUCTION = "You will receive some strucutred data about a company and one of it's business processes. Come up with a list of five (5) questions that help you as a consultant better understand the process. As these questions are for the business, only ask domain specific questions."
 
 PROCESSES_TO_QUESTIONS_EXAMPLE_INPUT = """{
@@ -15,4 +17,4 @@ PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT = """[
     "How does Fritz-Kola ensure that their commitment to fair trade and sustainability is effectively communicated in their advertising campaigns?"
 ]"""
 
-PROCESSES_TO_QUESTIONS_MOCK = PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT
+PROCESSES_TO_QUESTIONS_MOCK = json.loads(PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT)

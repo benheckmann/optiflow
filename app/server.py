@@ -4,26 +4,24 @@ from typing import List
 
 import openai
 from dotenv import load_dotenv
-from flask import Flask, session, Blueprint, request
-from flask_cors import CORS
+from flask import Flask, session, Blueprint, request, jsonify
 
-from api_types import LLMBusinessArea, UserSession
+from api_types import LLMBusinessArea, UserSession, FrontEndUserSession
 from api_types import Process, Recommendation
+from app.promts.recommendations import PROCESS_TO_RECOMMENDATIONS_MOCK
 from crawler import get_company_info
 from database_utils import Database
 from gpt import ask_gpt
 from promts.businessfunc2processes import *  # NOQA
-from promts.general import SYSTEM_MESSAGE, USER_SESSION_MOCK
+from promts.general import SYSTEM_MESSAGE, USER_SESSION_MOCK, FRONT_END_USER_SESSION_MOCK
 from promts.info2businessfunc import *  # NOQA
 from promts.processes2questions import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
-CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
-api = Blueprint("api", __name__, url_prefix="/api")
 # database = Database(app.logger)
 
-MOCK_ACTIVATED = True
+PRESENTATION_MODE = True
 
 
 @app.before_request
@@ -33,12 +31,12 @@ def before_request():
         session.setdefault("session_data", {})
 
 
-@api.route("/example", methods=["POST"])
+@app.route("/api/example", methods=["POST"])
 def example() -> str:
     input = request.json
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
         temperature=0,
+        model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": SYSTEM_MESSAGE},
             {"role": "user", "content": BUSINESS_AREA_TO_PROCESSES_INSTRUCTION},
@@ -51,10 +49,10 @@ def example() -> str:
     return llm_answer
 
 
-@api.route("/business-areas", methods=["POST"])
+@app.route("/api/business-areas", methods=["POST"])
 def url_to_business_areas() -> List[LLMBusinessArea]:
-    if MOCK_ACTIVATED:
-        return INFORMATION_TO_BUSINESS_AREA_MOCK
+    if PRESENTATION_MODE:
+        return jsonify(INFORMATION_TO_BUSINESS_AREA_MOCK)
     company_url = request.json.get(
         "url"
     )  # @TODO requires a json object containig the company url
@@ -83,11 +81,11 @@ def url_to_business_areas() -> List[LLMBusinessArea]:
     return llm_answer
 
 
-@api.route("/processes", methods=["POST"])
+@app.route("/api/processes", methods=["POST"])
 def get_processes() -> List[Process]:
     """return variable amount"""
-    if MOCK_ACTIVATED:
-        return BUSINESS_AREA_TO_PROCESSES_MOCK_NEW
+    if PRESENTATION_MODE:
+        return jsonify(BUSINESS_AREA_TO_PROCESSES_MOCK_NEW)
     business_functions = request.json
     chosen_business_function = business_functions[1]
     # TODO import business functions as basis from session
@@ -108,14 +106,14 @@ def get_processes() -> List[Process]:
     return llm_answer
 
 
-@api.route("/process-questions", methods=["POST"])
+@app.route("/api/process-questions", methods=["POST"])
 def get_process_questions() -> List[str]:
     """
     input: { "project_index": <i>, "process_name": <name>, "process_description": <desc> }
     output: exactly five questions
     """
-    if MOCK_ACTIVATED:
-        return PROCESSES_TO_QUESTIONS_MOCK
+    if PRESENTATION_MODE:
+        return jsonify(PROCESSES_TO_QUESTIONS_MOCK)
     input = request.json
     input["company_name"] = session.get("session_data", {}).get(
         "company_name", "unknown"
@@ -135,22 +133,30 @@ def get_process_questions() -> List[str]:
     return llm_answer
 
 
-@api.route("/recommendations", methods=["POST"])
+@app.route("/api/recommendations", methods=["POST"])
 def get_recommendations() -> List[Recommendation]:
-    if MOCK_ACTIVATED:
-        return PROCESSES_TO_QUESTIONS_MOCK
-    return []
+    if PRESENTATION_MODE:
+        return jsonify(PROCESS_TO_RECOMMENDATIONS_MOCK)
+    else:
+        # database.query("Select * from ")
+        return []
 
 
-@api.route("/get-all-projects", methods=["GET"])
+@app.route("/api/get-all-projects", methods=["GET"])
 def get_all_projects() -> UserSession:
-    if MOCK_ACTIVATED:
-        return USER_SESSION_MOCK
+    if PRESENTATION_MODE:
+        return jsonify(USER_SESSION_MOCK)
     return []
+
+
+@app.route("/api/get-front-end-user-session", methods=["GET"])
+def get_front_end_user_session() -> FrontEndUserSession:
+    if PRESENTATION_MODE:
+        return FRONT_END_USER_SESSION_MOCK
+    return {}
 
 
 if __name__ == "__main__":
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    app.register_blueprint(api)
     app.run(debug=True)
