@@ -5,6 +5,7 @@ from typing import List
 import openai
 from dotenv import load_dotenv
 from flask import Flask, session, Blueprint, request, jsonify
+from flask_cors import CORS
 
 from api_types import LLMBusinessArea, UserSession, FrontEndUserSession
 from api_types import Process, Recommendation
@@ -19,6 +20,7 @@ from promts.processes2questions import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
+CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
 # database = Database(app.logger)
 
 PRESENTATION_MODE = True
