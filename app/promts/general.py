@@ -72,7 +72,7 @@ USER_SESSION_MOCK = [
 ]
 
 
-FRONT_END_USER_SESSION_MOCK = {
+FRONT_END_USER_SESSION_MOCK = [{
     "projectName": "Fritz-Kola Campaign Optimization",
     "companyName": "Fritz-Kola GmbH",
     "description": "Optimizing the sales and marketing processes of Fritz-Kola GmbH.",
@@ -116,4 +116,4 @@ FRONT_END_USER_SESSION_MOCK = {
         }
     ],
     "summary": "The project aims to optimize Fritz-Kola's sales and marketing processes, with a focus on improving the effectiveness of social media campaigns. The company gathers customer feedback through various channels and analyzes it using sentiment analysis and data visualization to identify patterns and areas for improvement in their marketing strategies. Fritz-Kola tailors its advertising campaigns to specific target markets, such as environmentally-conscious consumers, and measures success using metrics like click-through rates, engagement rates, and conversions. The company uses a mix of online and offline channels to reach potential customers and ensures that its commitment to fair trade and sustainability is effectively communicated in advertising campaigns. This project will help Fritz-Kola further enhance its marketing efforts and drive sales growth."
-}
+}]

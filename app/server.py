@@ -5,6 +5,7 @@ from typing import List
 import openai
 from dotenv import load_dotenv
 from flask import Flask, session, Blueprint, request, jsonify
+from flask_cors import CORS
 
 from api_types import LLMBusinessArea, UserSession, FrontEndUserSession
 from api_types import Process, Recommendation
@@ -19,9 +20,11 @@ from promts.processes2questions import *  # NOQA
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
+CORS(app, origins=["http://localhost:3000"])  # default address of Next.js dev frontend
 # database = Database(app.logger)
 
 PRESENTATION_MODE = True
+REQ_RECOMMENDATIONS = False
 
 
 @app.before_request
@@ -135,7 +138,9 @@ def get_process_questions() -> List[str]:
 
 @app.route("/api/recommendations", methods=["POST"])
 def get_recommendations() -> List[Recommendation]:
+    global REQ_RECOMMENDATIONS
     if PRESENTATION_MODE:
+        REQ_RECOMMENDATIONS = True
         return jsonify(PROCESS_TO_RECOMMENDATIONS_MOCK)
     else:
         # database.query("Select * from ")
@@ -151,8 +156,9 @@ def get_all_projects() -> UserSession:
 
 @app.route("/api/get-front-end-user-session", methods=["GET"])
 def get_front_end_user_session() -> FrontEndUserSession:
+    global REQ_RECOMMENDATIONS
     if PRESENTATION_MODE:
-        return FRONT_END_USER_SESSION_MOCK
+        return jsonify([]) if not REQ_RECOMMENDATIONS else jsonify(FRONT_END_USER_SESSION_MOCK)
     return {}
 
 
