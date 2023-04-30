@@ -73,4 +73,5 @@ class FrontEndUserSession(TypedDict):
     selected_workflow: int
     questions: List[FrontEndQuestion]
     summary: str
+    tools: List[Recommendation]
 

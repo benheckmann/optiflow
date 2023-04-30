@@ -115,5 +115,28 @@ FRONT_END_USER_SESSION_MOCK = [{
             "answer": "We make sure to use messaging and imagery that emphasizes our commitment to fair trade and sustainability in our advertising campaigns. We also work to ensure that our products and production processes align with these values, and that our customers are aware of our efforts to be a socially responsible company. Additionally, we might partner with organizations or influencers that share our values to further amplify our message."
         }
     ],
-    "summary": "The project aims to optimize Fritz-Kola's sales and marketing processes, with a focus on improving the effectiveness of social media campaigns. The company gathers customer feedback through various channels and analyzes it using sentiment analysis and data visualization to identify patterns and areas for improvement in their marketing strategies. Fritz-Kola tailors its advertising campaigns to specific target markets, such as environmentally-conscious consumers, and measures success using metrics like click-through rates, engagement rates, and conversions. The company uses a mix of online and offline channels to reach potential customers and ensures that its commitment to fair trade and sustainability is effectively communicated in advertising campaigns. This project will help Fritz-Kola further enhance its marketing efforts and drive sales growth."
+    "summary": "The project aims to optimize Fritz-Kola's sales and marketing processes, with a focus on improving the effectiveness of social media campaigns. The company gathers customer feedback through various channels and analyzes it using sentiment analysis and data visualization to identify patterns and areas for improvement in their marketing strategies. Fritz-Kola tailors its advertising campaigns to specific target markets, such as environmentally-conscious consumers, and measures success using metrics like click-through rates, engagement rates, and conversions. The company uses a mix of online and offline channels to reach potential customers and ensures that its commitment to fair trade and sustainability is effectively communicated in advertising campaigns. This project will help Fritz-Kola further enhance its marketing efforts and drive sales growth.",
+    "tools": [
+        {
+            "problem_description": "The company is facing customer churn due to poor customer service.",
+            "ai_application_description": "Implement a chatbot that can help customers with their queries and complaints 24/7.",
+            "expected_business_value_evaluation": "This will reduce the workload on customer support staff and lead to higher customer satisfaction levels, resulting in a decrease in churn rate by at least 10%.",
+            "costs_and_risks": "The cost of implementing and maintaining the chatbot can be high, and there is a risk of negative customer experience if the chatbot does not function properly.",
+            "required_data_sources": "Customer service logs and FAQ documents."
+        },
+        {
+            "problem_description": "The company's marketing campaigns are not yielding the desired results.",
+            "ai_application_description": "Develop a predictive model that can identify potential customers based on their online behavior.",
+            "expected_business_value_evaluation": "This will lead to more targeted marketing campaigns and a higher conversion rate, resulting in an increase in revenue by at least 15%.",
+            "costs_and_risks": "The cost of developing and implementing the model can be high, and there is a risk of inaccurate predictions leading to ineffective marketing campaigns.",
+            "required_data_sources": "Online user behavior data and past marketing campaign data."
+        },
+        {
+            "problem_description": "The company's supply chain is not optimized, leading to delays and increased costs.",
+            "ai_application_description": "Develop a machine learning model that can optimize the supply chain by predicting demand and optimizing inventory levels.",
+            "expected_business_value_evaluation": "This will lead to more efficient supply chain management and a decrease in costs by at least 20%.",
+            "costs_and_risks": "The cost of developing and implementing the model can be high, and there is a risk of inaccurate predictions leading to supply chain disruptions.",
+            "required_data_sources": "Sales data, inventory data, and supplier data."
+        }
+    ]
 }]
