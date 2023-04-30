@@ -4,8 +4,8 @@ import {UserSession} from "../models/UserSession";
 
 interface QuestionComponentProps {
     userSession: UserSession,
-    setUserSession: (userSession: UserSession) => void;
-    question: string;
+    setUserSession: React.Dispatch<React.SetStateAction<UserSession>>;
+    question: number;
 }
 
 const QuestionComponent = (props: QuestionComponentProps) => {
@@ -13,6 +13,7 @@ const QuestionComponent = (props: QuestionComponentProps) => {
 
 
     return (
+        props.question > props.userSession.questions.length ?
         <Box style={{
             display: "flex",
             flexDirection: "column",
@@ -22,27 +23,38 @@ const QuestionComponent = (props: QuestionComponentProps) => {
             width: "100%",
             textAlign: "center" // added property
         }}>
-            <Box style={{minWidth: 200, width:300, textAlign: "start"}}>
+            <Box style={{minWidth: 200, width: 300, textAlign: "start"}}>
                 <Text weight={500}>
-                    {props.userSession["question 1"]}
+                    {props.userSession.questions[props.question].question}
                 </Text>
                 <Space h={10}/>
                 <Textarea
                     placeholder="Answer..."
                     autosize
                     minRows={1}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    style={{width:"100%"}}
+                    onChange={(e) => {
+                        setAnswer(e.target.value)
+                        props.setUserSession((userSession: UserSession) => {
+                            return {
+                                ...userSession,
+                                questions: userSession.questions.map((q, index) => index === props.question ? {
+                                    question: q.question,
+                                    answer: e.target.value
+                                } : q)
+                            } as UserSession;
+                        })
+                    }}
+                    style={{width: "100%"}}
                 />
                 <Space h={30}/>
             </Box>
             <Button className="pt-10" style={{background: "#25453F"}} onClick={() => props.setUserSession({
                 ...props.userSession,
-              "response 1": answer
+                questions: Object.assign([], props.userSession.questions, {[props.question]: answer})
             })}>
                 Submit
             </Button>
-        </Box>
+        </Box> : <></>
 
     )
 }

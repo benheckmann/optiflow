@@ -1,16 +1,14 @@
-import {Box, Button, Card, Container, Grid, Group, Image, Loader, Modal, Text, useMantineTheme} from "@mantine/core";
+import {Box, Container, Grid, Loader, Text} from "@mantine/core";
 import ProjectComponent from "./ProjectComponent";
 import AddNewProjectComponent from "./AddNewProjectComponent";
 import React, {useEffect, useState} from "react";
-import {Project} from "../models/Project";
-import ProjectService from "../Service/ProjectService";
-import {useDisclosure} from "@mantine/hooks";
 import ModalComponent from "./ModalComponent";
-import UrlScrapingComponent from "./UrlScrapingComponent";
+import {UserSession} from "../models/UserSession";
+import Services from "../Service/Services";
 
 const ProjectsViewComponent = () => {
 
-    const [projects, setProjects] = useState(null as Project[] | null);
+    const [userSessions, setUserSessions] = useState(null as UserSession[] | null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [opened, setOpened] = useState(false);
 
@@ -19,10 +17,10 @@ const ProjectsViewComponent = () => {
         const loadingTimeout = setTimeout(() => {
             setIsLoading(true);
         }, 1000);
-            ProjectService.getAllProjects().then(data => {
+            Services.getAllProjects().then(data => {
                 clearTimeout(loadingTimeout);
                 setIsLoading(false);
-                setProjects(data)
+                setUserSessions(data)
             })
     }, [
         ]
@@ -32,12 +30,12 @@ const ProjectsViewComponent = () => {
         <Box className="h-full">
             {
                 !isLoading ?
-                    projects ?
+                    userSessions ?
                     <Container fluid className="h-full" style={{maxWidth: 1400}}>
                         <Grid className="pt-5">
-                            {projects.map(project =>
-                                <Grid.Col span={3} key={project.name}>
-                                    <ProjectComponent name={project.name} description={project.description}/>
+                            {userSessions.map(userSession =>
+                                <Grid.Col span={3} key={userSession.projectName}>
+                                    <ProjectComponent userSession={userSession}/>
                                 </Grid.Col>)
                             }
                             <Grid.Col span={3}>

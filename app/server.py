@@ -11,6 +11,7 @@ from flask_cors import CORS
 
 from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
 from crawler import get_company_info
+api_types import LLMBusinessArea
 from examples_session import EXAMPLE_SESSION
 from database_utils import Database
 from gpt import ask_gpt
@@ -55,7 +56,7 @@ def example() -> str:
 
 
 @api.route("/business-areas", methods=["POST"])
-def url_to_business_areas():
+def url_to_business_areas() -> List[LLMBusinessArea]:
     if MOCK_ACTIVATED:
         return INFORMATION_TO_BUSINESS_AREA_MOCK
     else:
@@ -74,11 +75,18 @@ def url_to_business_areas():
         # TODO logic for updating the session
         # business_area_update = {"processes": json.loads(llm_answer)}
         # get_business_areas(session, input["title"]).update(business_area_update)
-        return llm_answer
+        # return llm_answer
+
+        # output: variable amount
+        mock_responses = [{
+            "title": "Buy Stairs",
+            "description": "Buy Stairs that will be installed later"
+        }]
+        return mock_responses
 
 
 @api.route("/processes", methods=["POST"])
-def get_processes():
+def get_processes() -> List[Process]:
     if MOCK_ACTIVATED:
         return BUSINESS_AREA_TO_PROCESSES_MOCK
     else:
@@ -96,13 +104,23 @@ def get_processes():
         ]
         llm_answer, tokens_spend = ask_gpt(messages)
         app.logger.info('tokens spend: %s', tokens_spend)
-        return llm_answer
+        # return llm_answer
+
+        # output: variable amount
+        mock_respones = [{
+            "title": "Buy Stairs",
+            "description": "Buy Stairs that will be installed later",
+            "process_questions": [],
+            "recommendations": [],
+        }]
+        return mock_respones
 
 
 @api.route("/process-questions", methods=["POST"])
-def get_process_questions() -> ProcessQuestion:
+def get_process_questions() -> List[str]:
     """
     input: { "project_index": <i>, "process_name": <name>, "process_description": <desc> }
+
     """
     input = request.json
     input["company_name"] = session.get("session_data", {}).get("company_name", "unknown")
@@ -115,11 +133,19 @@ def get_process_questions() -> ProcessQuestion:
         {"role": "user", "content": str(input)}]
     llm_answer, tokens_spent = ask_gpt(messages)
     app.logger.info('tokens spend: %s', tokens_spent)
-    return llm_answer
+    # return llm_answer
+
+    # output: exactly 5
+    mock_respones = [
+        "What do you mean?", "What is the meaning of life?", "Why is the meaning of life 42?",
+        "Why were all your answers wrong?", "ew"
+    ]
+    return mock_respones
 
 
 @api.route("/recommendations", methods=["POST"])
 def get_recommendations() -> List[Recommendation]:
+    # only signal finished
     pass
 
 

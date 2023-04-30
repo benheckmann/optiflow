@@ -1,16 +1,21 @@
+import {BusinessArea} from "./BusinessArea";
+
+export const QUESTION_AMOUNT: number = 5;
+
 export interface UserSession {
-    "name": string,
+    "projectName": string,
+    "companyName": string,
+    "description": string,
+    "companyProfile":string,
+    "industry": string,
     "url": string,
-    "business_area": string,
-    "workflow": string,
-    "question 1": string,
-    "response 1": string,
-    "question 2": string,
-    "response 2": string,
-    "question 3": string,
-    "response 3": string,
-    "question 4": string,
-    "response 4": string,
-    "question 5": string,
-    "response 5": string
+    "business_areas": BusinessArea[],
+    "selected_business_area": number
+    "workflows": BusinessArea[],
+    "selected_workflow": number,
+    "questions": {
+        "question": string,
+        "answer": string
+    }[],
+    "summary": string
 }
