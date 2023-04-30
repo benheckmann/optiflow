@@ -31,7 +31,7 @@ X_TO_RECOMMENDATIONS_EXAMPLE_INPUT = """{
 
 X_TO_RECOMMENDATIONS_EXAMPLE_OUTPUT = """"""
 
-PROCESS_TO_RECOMMENDATIONS_MOCK = """[
+PROCESS_TO_RECOMMENDATIONS_MOCK = [
     {
         "problem_description": "The company is facing customer churn due to poor customer service.",
         "ai_application_description": "Implement a chatbot that can help customers with their queries and complaints 24/7.",
@@ -53,4 +53,4 @@ PROCESS_TO_RECOMMENDATIONS_MOCK = """[
         "costs_and_risks": "The cost of developing and implementing the model can be high, and there is a risk of inaccurate predictions leading to supply chain disruptions.",
         "required_data_sources": "Sales data, inventory data, and supplier data."
     }
-]"""
+]

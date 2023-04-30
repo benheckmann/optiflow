@@ -116,7 +116,7 @@ BUSINESS_AREA_TO_PROCESSES_MOCK_OLD = """[
 ]
 """
 
-BUSINESS_AREA_TO_PROCESSES_MOCK_NEW = """[
+BUSINESS_AREA_TO_PROCESSES_MOCK_NEW = [
     {
         "title": "Marketing Campaigns",
         "description": "Creating and executing marketing campaigns that promote Fritz-Kola's unique selling proposition, emphasizing the use of high-quality, natural ingredients and socially responsible practices, and promoting tolerance and sustainability.",
@@ -148,4 +148,4 @@ BUSINESS_AREA_TO_PROCESSES_MOCK_NEW = """[
         "process_questions": [],
         "recommendations": []
     }
-]"""
+]

@@ -12,7 +12,7 @@ DB_NAME = "General"
 class Database:
     """Abstraction over CosmosDB Database. Provides basic NoSQL operations."""
 
-    def __init__(self, logger: Logger):
+    def __init__(self, logger: Logger = getLogger()):
         self.logger = logger
         self.client = CosmosClient(
             os.getenv("COSMOS_DB_ENDPOINT"),

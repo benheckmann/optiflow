@@ -2,7 +2,7 @@
 
 SYSTEM_MESSAGE = "You are an consultant for companies aiming to integrate AI into their business."  # not that important; system messages tend to be ignored
 
-USER_SESSION_MOCK = """[
+USER_SESSION_MOCK = [
     {
         "company_name": "Fritz-Kola GmbH",
         "url": "https://fritz-kola.com/de",
@@ -69,4 +69,51 @@ USER_SESSION_MOCK = """[
             }
         ]
     }
-]"""
+]
+
+
+FRONT_END_USER_SESSION_MOCK = {
+    "projectName": "Fritz-Kola Campaign Optimization",
+    "companyName": "Fritz-Kola GmbH",
+    "description": "Optimizing the sales and marketing processes of Fritz-Kola GmbH.",
+    "companyProfile": "Fritz-Kola GmbH is a German beverage company that produces soft drinks, energy drinks, and mixers.",
+    "industry": "Beverage",
+    "url": "https://fritz-kola.com/de",
+    "business_areas": [
+        {
+            "title": "Sales and Marketing",
+            "description": "Processes related to sales and marketing of Fritz-Kola products."
+        }
+    ],
+    "selected_business_area": 0,
+    "workflows": [
+        {
+            "title": "Optimizing Social Media Campaigns",
+            "description": "Finding ways to improve the effectiveness of social media campaigns to increase brand awareness and drive sales."
+        }
+    ],
+    "selected_workflow": 0,
+    "questions": [
+        {
+            "question": "How does Fritz-Kola currently gather customer feedback, and what methods do they use to analyze this feedback to improve their marketing strategies?",
+            "answer": "We gather customer feedback through various channels, including social media, email, and surveys. We use tools like sentiment analysis and data visualization to analyze this feedback and identify patterns and areas for improvement in our marketing strategies."
+        },
+        {
+            "question": "Can you provide an example of how Fritz-Kola has tailored its advertising campaigns to appeal to specific target markets?",
+            "answer": "Sure, we recently ran a campaign that focused on the sustainability and fair trade aspects of our products, which we knew would resonate with environmentally-conscious consumers. We used messaging and imagery that emphasized our commitment to these values, and targeted our ads to users who had previously expressed interest in sustainability and environmentalism."
+        },
+        {
+            "question": "How does Fritz-Kola measure the success of their advertising campaigns, and what metrics do they use to evaluate their performance?",
+            "answer": "We measure the success of our campaigns using a variety of metrics, including click-through rates, engagement rates, and conversions. We also conduct surveys and analyze customer feedback to get a sense of how our advertising is resonating with our target audience."
+        },
+        {
+            "question": "What methods does Fritz-Kola use to reach potential customers in their target markets, and how do they determine which channels to use?",
+            "answer": "We use a combination of online and offline channels to reach potential customers in our target markets. For example, we might run targeted ads on social media, sponsor events or festivals that align with our brand values, or partner with local retailers to offer in-store promotions. We determine which channels to use based on factors like the demographics and interests of our target audience, the reach and cost-effectiveness of different channels, and our overall marketing strategy."
+        },
+        {
+            "question": "How does Fritz-Kola ensure that their commitment to fair trade and sustainability is effectively communicated in their advertising campaigns?",
+            "answer": "We make sure to use messaging and imagery that emphasizes our commitment to fair trade and sustainability in our advertising campaigns. We also work to ensure that our products and production processes align with these values, and that our customers are aware of our efforts to be a socially responsible company. Additionally, we might partner with organizations or influencers that share our values to further amplify our message."
+        }
+    ],
+    "summary": "The project aims to optimize Fritz-Kola's sales and marketing processes, with a focus on improving the effectiveness of social media campaigns. The company gathers customer feedback through various channels and analyzes it using sentiment analysis and data visualization to identify patterns and areas for improvement in their marketing strategies. Fritz-Kola tailors its advertising campaigns to specific target markets, such as environmentally-conscious consumers, and measures success using metrics like click-through rates, engagement rates, and conversions. The company uses a mix of online and offline channels to reach potential customers and ensures that its commitment to fair trade and sustainability is effectively communicated in advertising campaigns. This project will help Fritz-Kola further enhance its marketing efforts and drive sales growth."
+}

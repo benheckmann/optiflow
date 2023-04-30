@@ -53,7 +53,7 @@ INFORMATION_TO_BUSINESS_AREA_EXAMPLE_OUTPUT = """
 ]
 """
 
-INFORMATION_TO_BUSINESS_AREA_MOCK = """[
+INFORMATION_TO_BUSINESS_AREA_MOCK = [
     {
         "title": "Product Development",
         "description": "Designing and developing new soft drink products such as Fritz-Kola, fruit-based sodas, and mixers, using high-quality, natural ingredients to create a unique and flavorful alternative to traditional soft drinks."
@@ -75,4 +75,3 @@ INFORMATION_TO_BUSINESS_AREA_MOCK = """[
         "description": "Ensuring that the soft drinks are consistently high-quality and meet industry standards through regular testing and quality assurance procedures throughout the production process."
     }
 ]
-"""
