@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Card, Container, Flex, Grid, ScrollArea, Space, Text} from "@mantine/core";
+import {Box, Card, Container, Grid, Space, Text} from "@mantine/core";
 import ModalComponent from "./ModalComponent";
 import BusinessAreaCardComponent from "./BusinessAreaCardComponent";
 import {UserSession} from "../models/UserSession";

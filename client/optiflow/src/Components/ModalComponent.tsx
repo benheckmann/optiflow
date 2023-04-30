@@ -34,7 +34,8 @@ const emptyUserSession: UserSession = {
     "workflows": [],
     "selected_workflow": 0,
     "questions": [],
-    "summary": ""
+    "summary": "",
+    "tools": []
 }
 
 const ModalComponent = (props: ModalComponentProps) => {

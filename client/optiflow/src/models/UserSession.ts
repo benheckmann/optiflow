@@ -17,5 +17,13 @@ export interface UserSession {
         "question": string,
         "answer": string
     }[],
-    "summary": string
+    "summary": string,
+    "tools": {
+        "problem_description": string,
+        "ai_application_description": string,
+        "expected_business_value_evaluation": string,
+        "costs_and_risks": string,
+        "required_data_sources": string,
+        "recommended_tools": {name: string, url: string}[]
+    }[]
 }
