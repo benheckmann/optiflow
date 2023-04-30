@@ -109,7 +109,7 @@ def get_process_questions() -> ProcessQuestion:
     input["company_description"] = session.get("session_data", {})[input.get("project_index", 0)]
     messages = [
         {"role": "system", "content": SYSTEM_MESSAGE},
-        {"role": "user", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_INSTRUCTION},
+        {"role": "user", "content": PROCESSES_TO_QUESTIONS_INSTRUCTION},
         {"role": "user", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_INPUT},
         {"role": "assistant", "content": PROCESSES_TO_QUESTIONS_EXAMPLE_OUTPUT},
         {"role": "user", "content": str(input)}]
