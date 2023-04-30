@@ -33,6 +33,11 @@ class BusinessArea(TypedDict):
     processes: List[Process]
 
 
+class LLMBusinessArea(TypedDict):
+    title: str
+    description: str
+
+
 class UserSession(TypedDict):
     company_name: str
     url: str

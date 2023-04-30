@@ -4,8 +4,7 @@ import UrlScrapingComponent from "./UrlScrapingComponent";
 import BusinessAreasComponent from "./BusinessAreasComponent";
 import {QUESTION_AMOUNT, UserSession} from "../models/UserSession";
 import QuestionComponent from "./QuestionComponent";
-import BusinessAreaService from "../Service/BusinessAreaService";
-import WorkflowsService from "../Service/WorkflowsService";
+import Services from "../Service/Services";
 
 interface ModalComponentProps {
     opened: boolean,
@@ -35,7 +34,7 @@ const ModalComponent = (props: ModalComponentProps) => {
     const advanceStep = () => {
         switch (currentStep) {
             case 1:
-                BusinessAreaService.getAllBusinessAreas(userSession.url).then(data => {
+                Services.getAllBusinessAreas(userSession.url).then(data => {
                     setUserSession(userSession => {
                         return {
                             ...userSession,
@@ -45,7 +44,7 @@ const ModalComponent = (props: ModalComponentProps) => {
                 });
                 break;
             case 2:
-                WorkflowsService.getAllWorkflows(userSession.business_areas[userSession.selected_business_area]).then(data => {
+                Services.getAllWorkflows(userSession.business_areas[userSession.selected_business_area]).then(data => {
                     setUserSession(userSession => {
                         return {
                             ...userSession,
@@ -54,6 +53,20 @@ const ModalComponent = (props: ModalComponentProps) => {
                     })
                 });
                 break;
+            case 3:
+                Services.getQuestions(userSession.workflows[userSession.selected_workflow]).then(data => {
+                    setUserSession(userSession => {
+                        return {
+                            ...userSession,
+                            questions: data.map(q => {
+                                return {
+                                    question: q,
+                                    answer: ""
+                                }
+                            })
+                        }
+                    })
+                })
 
         }
         setCurrentStep(currentStep + 1);

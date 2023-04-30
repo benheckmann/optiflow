@@ -4,7 +4,7 @@ import {UserSession} from "../models/UserSession";
 
 interface QuestionComponentProps {
     userSession: UserSession,
-    setUserSession: (userSession: UserSession) => void;
+    setUserSession: React.Dispatch<React.SetStateAction<UserSession>>;
     question: number;
 }
 
@@ -13,6 +13,7 @@ const QuestionComponent = (props: QuestionComponentProps) => {
 
 
     return (
+        props.question > props.userSession.questions.length ?
         <Box style={{
             display: "flex",
             flexDirection: "column",
@@ -31,7 +32,18 @@ const QuestionComponent = (props: QuestionComponentProps) => {
                     placeholder="Answer..."
                     autosize
                     minRows={1}
-                    onChange={(e) => setAnswer(e.target.value)}
+                    onChange={(e) => {
+                        setAnswer(e.target.value)
+                        props.setUserSession((userSession: UserSession) => {
+                            return {
+                                ...userSession,
+                                questions: userSession.questions.map((q, index) => index === props.question ? {
+                                    question: q.question,
+                                    answer: e.target.value
+                                } : q)
+                            } as UserSession;
+                        })
+                    }}
                     style={{width: "100%"}}
                 />
                 <Space h={30}/>
@@ -42,7 +54,7 @@ const QuestionComponent = (props: QuestionComponentProps) => {
             })}>
                 Submit
             </Button>
-        </Box>
+        </Box> : <></>
 
     )
 }

@@ -10,6 +10,7 @@ from flask import Flask, session, Blueprint, request
 from flask_cors import CORS
 
 from api_types import BusinessArea, Process, ProcessQuestion, Recommendation
+from app.api_types import LLMBusinessArea
 from examples_session import EXAMPLE_SESSION
 from utils import get_business_areas
 from prompts import *  # NOQA
@@ -53,7 +54,14 @@ def example() -> str:
 
 
 @api.route("/business-areas", methods=["POST"])
-def url_to_business_areas() -> BusinessArea:
+def url_to_business_areas() -> List[LLMBusinessArea]:
+    # variable amount
+    mock_responses = [{
+        "title": "Buy Stairs",
+        "description": "Buy Stairs that will be installed later"
+    }]
+    return mock_responses
+
     # scrape (Florian)
     mock_scraped_pages = EXAMPLE_SESSION["scraped_pages"]
     # extract information / structure (Max)
@@ -61,24 +69,33 @@ def url_to_business_areas() -> BusinessArea:
 
 
 @api.route("/processes", methods=["POST"])
-def get_processes() -> Process:
-    mock_respones = {
+def get_processes() -> List[Process]:
+    # variable amount
+    mock_respones = [{
         "title": "Buy Stairs",
         "description": "Buy Stairs that will be installed later",
         "process_questions": [],
         "recommendations": [],
-    }
+    }]
     return mock_respones
 
 
 @api.route("/process-questions", methods=["POST"])
-def get_process_questions() -> ProcessQuestion:
+def get_process_questions() -> List[str]:
+    # exactly 5
+    mock_respones = [
+        "What do you mean?", "What is the meaning of life?", "Why is the meaning of life 42?",
+        "Why were all your answers wrong?", "ew"
+    ]
+    return mock_respones
+
     # note: subsequent questions will be based on answers; tbd how this interaction is represented here
     pass
 
 
 @api.route("/recommendations", methods=["POST"])
 def get_recommendations() -> List[Recommendation]:
+    # only signal finished
     pass
 
 

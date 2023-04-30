@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Project} from "../models/Project";
-import ProjectService from "../Service/ProjectService";
-import {Box, Container, Grid, Loader, ScrollArea, Text} from "@mantine/core";
-import ProjectComponent from "./ProjectComponent";
-import AddNewProjectComponent from "./AddNewProjectComponent";
+import {Box, Container, Grid, Loader, Text} from "@mantine/core";
 import ModalComponent from "./ModalComponent";
 import BusinessAreaCardComponent from "./BusinessAreaCardComponent";
-import BusinessAreaService from "../Service/BusinessAreaService";
-import {BusinessArea} from "../models/BusinessArea";
 import {UserSession} from "../models/UserSession";
 
 
 interface BusinessAreasComponentProps {
     userSession: UserSession;
-    setUserSession: (userSession: UserSession) => void;
+    setUserSession: React.Dispatch<React.SetStateAction<UserSession>>;
     isWorkflow: boolean;
 }
 

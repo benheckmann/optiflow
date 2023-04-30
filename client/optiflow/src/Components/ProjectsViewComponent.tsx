@@ -1,13 +1,10 @@
-import {Box, Button, Card, Container, Grid, Group, Image, Loader, Modal, Text, useMantineTheme} from "@mantine/core";
+import {Box, Container, Grid, Loader, Text} from "@mantine/core";
 import ProjectComponent from "./ProjectComponent";
 import AddNewProjectComponent from "./AddNewProjectComponent";
 import React, {useEffect, useState} from "react";
-import {Project} from "../models/Project";
-import ProjectService from "../Service/ProjectService";
-import {useDisclosure} from "@mantine/hooks";
 import ModalComponent from "./ModalComponent";
-import UrlScrapingComponent from "./UrlScrapingComponent";
 import {UserSession} from "../models/UserSession";
+import Services from "../Service/Services";
 
 const ProjectsViewComponent = () => {
 
@@ -20,7 +17,7 @@ const ProjectsViewComponent = () => {
         const loadingTimeout = setTimeout(() => {
             setIsLoading(true);
         }, 1000);
-            ProjectService.getAllProjects().then(data => {
+            Services.getAllProjects().then(data => {
                 clearTimeout(loadingTimeout);
                 setIsLoading(false);
                 setUserSessions(data)
