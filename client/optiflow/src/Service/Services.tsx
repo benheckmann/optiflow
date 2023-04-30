@@ -41,9 +41,14 @@ const getQuestions = async (process: BusinessArea): Promise<string[]> => {
     return await result.json();
 }
 
+const postQuestions = async (process: BusinessArea): Promise<void> => {
+
+}
+
 export default {
     getAllBusinessAreas,
     getAllWorkflows,
     getAllProjects,
-    getQuestions
+    getQuestions,
+    postQuestions
 }

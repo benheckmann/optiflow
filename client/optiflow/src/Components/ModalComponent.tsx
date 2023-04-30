@@ -1,10 +1,21 @@
-import {Box, Button, Container, Grid, Modal, Progress, ScrollArea, useMantineTheme} from "@mantine/core";
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    LoadingOverlay,
+    Modal,
+    Progress,
+    ScrollArea, Text,
+    useMantineTheme
+} from "@mantine/core";
 import React, {useState} from "react";
 import UrlScrapingComponent from "./UrlScrapingComponent";
 import BusinessAreasComponent from "./BusinessAreasComponent";
 import {QUESTION_AMOUNT, UserSession} from "../models/UserSession";
 import QuestionComponent from "./QuestionComponent";
 import Services from "../Service/Services";
+import LoadingScreen from "./LoadingScreen";
 
 interface ModalComponentProps {
     opened: boolean,
@@ -66,7 +77,10 @@ const ModalComponent = (props: ModalComponentProps) => {
                             })
                         }
                     })
-                })
+                });
+                break;
+            case 8:
+                Services.
 
         }
         setCurrentStep(currentStep + 1);
@@ -108,40 +122,47 @@ const ModalComponent = (props: ModalComponentProps) => {
                                                             userSession={userSession}/>
                                 </ScrollArea></Box>
                                 :
-                                currentStep >= 4 && userSession.questions[currentStep - 4] ?
-                                    <QuestionComponent question={currentStep - 4} userSession={userSession}
-                                                       setUserSession={setUserSession}/>
-                                    : <></>
+                                currentStep >= 4 && currentStep <= 8 ?
+                                    userSession.questions[currentStep - 4] ?
+                                        <QuestionComponent question={currentStep - 4} userSession={userSession}
+                                                           setUserSession={setUserSession}/>
+                                        : <LoadingScreen/>
+                                    : <Container className="text-white" style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        height: "100%"
+                                    }}>
+                                        <Text>Working on recommendations...</Text>
+                                        <LoadingOverlay visible={true}/>
+                                    </Container>
                     }
                 </Box>
 
 
-                <Grid className="bg-amber-300" style={{backgroundColor: "white"}}>
-                    <Grid.Col span={8} style={{marginTop: 12}}>
-                        <Container>
-                            <Progress
-                                size="xl"
-                                sections={[
-                                    {value: currentStep * (100 / (3 + QUESTION_AMOUNT)), color: '#25453F'}]}
-                            />
-                        </Container>
-
-                    </Grid.Col>
-                    <Grid.Col span={4}>
-                        <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
-                                onClick={() => setCurrentStep(currentStep - 1)}>Previous</Button>
-                        {currentStep === 8 ?
+                {currentStep < 9 ?
+                    <Grid className="bg-amber-300" style={{backgroundColor: "white"}}>
+                        <Grid.Col span={8} style={{marginTop: 12}}>
+                            <Container>
+                                <Progress
+                                    size="xl"
+                                    sections={[
+                                        {value: (currentStep - 1) * (100 / (2 + QUESTION_AMOUNT)), color: '#25453F'}]}
+                                />
+                            </Container>
+                        </Grid.Col>
+                        <Grid.Col span={4}>
                             <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
-                                    onClick={() => {
-                                    }}>
-                                Finish
-                            </Button>
-                            : <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
-                                      onClick={() => {
-                                          advanceStep();
-                                      }}>Next</Button>}
-                    </Grid.Col>
-                </Grid>
+                                    onClick={() => setCurrentStep(currentStep - 1)}>Previous</Button>
+                                <Button style={{width: 100, backgroundColor: "#25453F", margin: 4}}
+                                          onClick={() => {
+                                              advanceStep();
+                                          }}>
+                                    {currentStep !== 8 ? "Next" : "Finished" }
+                                </Button>
+                        </Grid.Col>
+                    </Grid> : <></>
+                }
             </Box>
         </Modal>
     )

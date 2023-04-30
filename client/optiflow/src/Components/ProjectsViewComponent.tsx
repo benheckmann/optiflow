@@ -30,10 +30,9 @@ const ProjectsViewComponent = () => {
         <Box className="h-full">
             {
                 !isLoading ?
-                    userSessions ?
                     <Container fluid className="h-full" style={{maxWidth: 1400}}>
                         <Grid className="pt-5">
-                            {userSessions.map(userSession =>
+                            {userSessions && userSessions.map(userSession =>
                                 <Grid.Col span={3} key={userSession.projectName}>
                                     <ProjectComponent userSession={userSession}/>
                                 </Grid.Col>)
@@ -46,10 +45,7 @@ const ProjectsViewComponent = () => {
 
                         </Grid>
                        <ModalComponent opened={opened} setOpened={setOpened}/>
-
-
                     </Container>
-                        : <></>
                     :
                     <Container className="text-white" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
                         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

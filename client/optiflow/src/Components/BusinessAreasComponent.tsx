@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Box, Container, Grid, Loader, Text} from "@mantine/core";
+import {Box, Container, Grid} from "@mantine/core";
 import ModalComponent from "./ModalComponent";
 import BusinessAreaCardComponent from "./BusinessAreaCardComponent";
 import {UserSession} from "../models/UserSession";
+import LoadingScreen from "./LoadingScreen";
 
 
 interface BusinessAreasComponentProps {
@@ -16,7 +17,6 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [opened, setOpened] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(null as number | null);
-
 
     useEffect(() => {
             const loadingTimeout = setTimeout(() => {
@@ -69,28 +69,12 @@ const BusinessAreasComponent = (props: BusinessAreasComponentProps) => {
                                 ))}
                             </Grid>
                             <ModalComponent opened={opened} setOpened={setOpened}/>
-
-
                         </Container>
                         : <></>
-                    :
-                    <Container className="text-white" style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "100%"
-                    }}>
-                        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                            <Loader color="white"/>
-                            <Text className="pt-5">Loading...</Text>
-                        </div>
-                    </Container>
-
-
+                    : <LoadingScreen />
             }
         </Box>
     )
-
 }
 
 export default BusinessAreasComponent;
